@@ -1,9 +1,12 @@
 .nav-container {
-  height: 15vh;
+  height: 10vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 2.5rem;
+  margin: 0.5rem 2.5rem;
+  @media (max-width: 600px) {
+    margin: 0.5rem 1rem;
+  }
 }
 
 .menu-button {

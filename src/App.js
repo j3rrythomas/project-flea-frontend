@@ -1,14 +1,20 @@
 import "./App.scss";
-import { CustomCursor, Navbar } from "./components";
+import { CustomCursor } from "./components";
+import { Home, Login } from "./pages";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const App = () => {
   return (
-    <div className="App">
-      <CustomCursor />
-      <div className="body">
-        <Navbar />
+    <BrowserRouter>
+      <div className="App">
+        <CustomCursor />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/login" element={<Login />} />
+        </Routes>
       </div>
-    </div>
+    </BrowserRouter>
   );
 };
 

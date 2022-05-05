@@ -1,0 +1,26 @@
+.login-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.form-div {
+  flex: 30%;
+}
+.img-div {
+  flex: 70%;
+  background-image: url("../../assets/images/login-banner.jpg");
+  background-size: contain;
+}
+
+@media (max-width: 1280px) {
+  .img-div {
+    display: none;
+  }
+  .form-div {
+    background-image: url("../../assets/images/login-banner-mobile.jpg");
+    background-size: contain;
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+  }
+}
