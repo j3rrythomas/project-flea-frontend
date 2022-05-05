@@ -1,0 +1,18 @@
+.App {
+  background: $primary-color;
+  display: flex;
+  height: 100vh;
+}
+
+.body {
+  height: 100vh;
+  width: 100%;
+}
+
+html,
+body {
+  &,
+  * {
+    cursor: none;
+  }
+}
