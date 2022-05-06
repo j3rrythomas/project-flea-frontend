@@ -6,21 +6,147 @@
 
 .form-div {
   flex: 30%;
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
 }
 .img-div {
   flex: 70%;
   background-image: url("../../assets/images/login-banner.jpg");
-  background-size: contain;
+  
 }
 
 @media (max-width: 1280px) {
   .img-div {
-    display: none;
-  }
-  .form-div {
-    background-image: url("../../assets/images/login-banner-mobile.jpg");
+    background-image: url("../../assets/images/login-banner-mobile.jpg") !important;
     background-size: contain;
     filter: blur(8px);
     -webkit-filter: blur(8px);
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
+  .login-container {
+    display: block;
+  }
+  .form-div {
+    background: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    height: 100%;
+    width: 100%;
+  }
+
+  .form-container {
+    background: transparent;
+    &,
+    * {
+      background: transparent;
+    }
+    input {
+      background: $white;
+    }
+  }
+}
+
+.login-button {
+  color: $primary-color;
+  background-color: $black;
+
+  box-sizing: border-box;
+  display: inline-block;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  margin: 0;
+  outline: none;
+  padding: 8px 23px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  touch-action: manipulation;
+  transition: box-shadow 0.2s, -ms-transform 0.1s, -webkit-transform 0.1s,
+    transform 0.1s;
+  user-select: none;
+  -webkit-user-select: none;
+  width: auto;
+
+  &:active {
+    background-color: $white;
+    border-color: $black;
+    transform: scale(0.96);
+  }
+  &:focus-visible {
+    box-shadow: $black 0 0 0 2px, rgba(255, 255, 255, 0.8) 0 0 0 4px;
+    transition: box-shadow 0.2s;
+  }
+  &:hover {
+    background-color: $primary-color;
+    color: $black;
+    border: 1px solid $gray;
+  }
+}
+
+.field-div {
+  display: flex;
+  justify-content: space-between;
+  label {
+    font-weight: 400;
+    font-size: 1.25rem;
+    text-align: left;
+    margin-right: 1rem;
+  }
+  input {
+    width: 200px;
+    height: 30px;
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: $gray 0 0 0 2px, rgba(255, 255, 255, 0.8) 0 0 0 4px;
+      transition: box-shadow 0.2s;
+    }
+  }
+}
+
+.form-heading {
+  h1 {
+    font-size: 3rem;
+  }
+  font-family: "Chilanka";
+  .malayalam-text {
+    display: none;
+    opacity: 0;
+    animation: fadeOut 1s forwards;
+  }
+  .english-text {
+    display: inline-block;
+    animation: fadeIn 1s forwards;
+  }
+  &:hover {
+    .malayalam-text {
+      display: inline-block;
+      animation: fadeIn 1s forwards;
+    }
+    .english-text {
+      animation: fadeOut 1s forwards;
+      display: none;
+    }
+  }
+}
+
+.error-msg {
+  color: #ff0000;
+  font-weight: 600;
+  font-size: 1.075rem;
 }

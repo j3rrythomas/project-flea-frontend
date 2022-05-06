@@ -9,5 +9,11 @@ body {
   &,
   * {
     cursor: none;
+    background-color: $primary-color;
   }
+}
+
+input {
+  border: none;
+  background-color: #fff;
 }

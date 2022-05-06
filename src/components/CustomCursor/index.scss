@@ -11,6 +11,7 @@
   transition: opacity 1s cubic-bezier(0.77, 0, 0.175, 1);
   animation: fadeIn 1s cubic-bezier(0.77, 0, 0.175, 1) 0s forwards;
   mix-blend-mode: difference;
+  background: transparent;
 
   .main-cursor-background {
     width: 30px;
@@ -23,13 +24,16 @@
 .secondary-cursor {
   width: 60px;
   height: 60px;
+  background: transparent;
 
   .cursor-background {
+    background: transparent;
     width: 100%;
     height: 100%;
     border-radius: 50%;
     border: 1px solid black;
     position: relative;
+    color: transparent;
   }
 }
 
@@ -50,5 +54,11 @@
 
   100% {
     opacity: 0;
+  }
+}
+
+.input-group {
+  span {
+    background-color: $black;
   }
 }
