@@ -1,4 +1,4 @@
-import { checkAuth, Navbar } from "../../components";
+import { Navbar } from "../../components";
 import "./index.scss";
 
 const Home = () => {
