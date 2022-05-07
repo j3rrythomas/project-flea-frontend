@@ -9,4 +9,4 @@ const Home = () => {
   );
 };
 
-export default checkAuth(Home);
+export default Home;

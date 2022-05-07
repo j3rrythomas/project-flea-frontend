@@ -4,8 +4,18 @@
   display: flex;
 }
 
+.register-div {
+  @media (orientation: landscape) and (max-height: 600px) {
+    margin-top: 40%;
+  }
+
+  @media (orientation: portrait) and (max-height: 900px) {
+    margin-top: 20%;
+  }
+}
 .form-div {
   flex: 30%;
+
   .form-container {
     display: flex;
     flex-direction: column;
@@ -18,7 +28,6 @@
 .img-div {
   flex: 70%;
   background-image: url("../../assets/images/login-banner.jpg");
-  
 }
 
 @media (max-width: 1280px) {
@@ -53,8 +62,15 @@
     * {
       background: transparent;
     }
-    input {
-      background: $white;
+    input,
+    select {
+      background: #fff;
+    }
+    input[type="file"] {
+      background: transparent;
+      &::file-selector-button {
+        background-color: #fff;
+      }
     }
   }
 }
@@ -95,27 +111,6 @@
     background-color: $primary-color;
     color: $black;
     border: 1px solid $gray;
-  }
-}
-
-.field-div {
-  display: flex;
-  justify-content: space-between;
-  label {
-    font-weight: 400;
-    font-size: 1.25rem;
-    text-align: left;
-    margin-right: 1rem;
-  }
-  input {
-    width: 200px;
-    height: 30px;
-
-    &:focus-visible {
-      outline: none;
-      box-shadow: $gray 0 0 0 2px, rgba(255, 255, 255, 0.8) 0 0 0 4px;
-      transition: box-shadow 0.2s;
-    }
   }
 }
 

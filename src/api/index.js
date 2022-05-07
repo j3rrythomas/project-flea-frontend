@@ -1,8 +1,9 @@
 import axios from "axios";
 import { store } from "../reducers";
+import config from "./config";
 
 const apiAxios = axios.create({
-  baseURL: "https://miniproject-backend-n.herokuapp.com/",
+  baseURL: config.baseURL,
 });
 
 const setToken = () => {
