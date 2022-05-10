@@ -17,7 +17,7 @@ const authSlice = createSlice({
       state.isAuthenticated = true;
       state.role = role;
     },
-    logout: (state, action) => {
+    logout: (state) => {
       state.userId = "";
       state.authToken = "";
       state.isAuthenticated = false;

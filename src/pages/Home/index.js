@@ -1,4 +1,4 @@
-import { Navbar } from "../../components";
+import { Navbar, withSidebar } from "../../components";
 import "./index.scss";
 
 const Home = () => {
@@ -9,4 +9,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default withSidebar(Home);

@@ -70,7 +70,7 @@ const Register = () => {
                   });
               }}
             >
-              {({ errors, touched, isValidating }) => (
+              {() => (
                 <Form className="grid grid-cols-12 w-full gap-x-4 gap-y-1 px-4 justify-items-center">
                   <div className="col-span-12 xl:col-span-6">
                     <div className="form-control w-full min-w-[300px] xl:min-w-[150px]">

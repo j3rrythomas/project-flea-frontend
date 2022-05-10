@@ -1,0 +1,57 @@
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { MenuIcon } from "../../assets/icons";
+import { logout } from "../../reducers/authSlice";
+
+const Sidebar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  return (
+    <>
+      {!isOpen ? (
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="fixed z-30 flex items-center cursor-pointer left-10 top-8 "
+        >
+          <MenuIcon className="scale-125" fill="#333435" />
+        </button>
+      ) : (
+        <button
+          className="text-4xl text-white fixed top-6 left-10 bg-black z-10"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          X
+        </button>
+      )}
+      <div
+        className={`fixed top-0 left-0 bg-black min-w-[300px] w-[20vw] h-full ${
+          isOpen ? "translate-x-0" : "-translate-x-full"
+        } ease-in duration-300`}
+      >
+        <div className="flex flex-col justify-between items-center bg-transparent mt-28 mb-33 h-4/5">
+          <div className="bg-transparent">
+            <div className="bg-transparent">A</div>
+            <div className="bg-transparent">B</div>
+            <div className="bg-transparent">C</div>
+          </div>
+          <div className="bg-transparent">
+            <button
+              className="btn-md  min-w-[300px] text-2xl text-[#fff] bg-transparent hover:scale-125 transition-all"
+              onClick={() => {
+                dispatch(isAuthenticated ? logout() : navigate("/login"));
+                setIsOpen(false);
+              }}
+            >
+              {isAuthenticated ? "Logout" : "Login"}
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Sidebar;

@@ -71,7 +71,7 @@ const Login = () => {
                   });
               }}
             >
-              {({ errors, touched, isValidating }) => (
+              {() => (
                 <Form className="flex w-2/3 flex-col justify-evenly">
                   <div className="flex flex-col justify-between mb-10 items-center">
                     <div className="form-control w-full max-w-xs">
