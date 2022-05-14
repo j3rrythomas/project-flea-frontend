@@ -10,10 +10,10 @@ const setToken = () => {
   const state = store.getState();
   if (state.auth.authToken !== "" && state.auth.isAuthenticated === true) {
     apiAxios.defaults.headers.common[
-      "Authorization"
+      "token"
     ] = `Bearer ${state.auth.authToken}`;
   } else {
-    delete apiAxios.defaults.headers.common["Authorization"];
+    delete apiAxios.defaults.headers.common["token"];
     state.auth.isAuthenticated = false;
     state.auth.authToken = "";
   }

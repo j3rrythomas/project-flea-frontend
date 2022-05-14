@@ -1,5 +1,4 @@
 .login-container {
-  height: 100%;
   width: 100%;
   display: flex;
 }
@@ -138,10 +137,4 @@
       display: none;
     }
   }
-}
-
-.error-msg {
-  color: #ff0000;
-  font-weight: 600;
-  font-size: 1.075rem;
 }

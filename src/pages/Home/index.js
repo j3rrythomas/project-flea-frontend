@@ -1,12 +1,8 @@
-import { Navbar, withSidebar } from "../../components";
+import { withNavbar, withSidebar, HomeProducts } from "../../components";
 import "./index.scss";
 
 const Home = () => {
-  return (
-    <div className="body">
-      <Navbar />
-    </div>
-  );
+  return <HomeProducts />;
 };
 
-export default withSidebar(Home);
+export default withSidebar(withNavbar(Home));

@@ -1,7 +1,8 @@
 .App {
   background: $primary-color;
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
+  overflow: scroll;
 }
 
 html,
@@ -9,7 +10,6 @@ body {
   &,
   * {
     cursor: none;
-    background-color: $primary-color;
   }
 }
 

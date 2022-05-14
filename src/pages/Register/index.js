@@ -1,35 +1,19 @@
-import { Field, Form, Formik } from "formik";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { register } from "../../api/auth/Register";
 import { LogoSmall } from "../../assets/images";
-import { checkNotAuth } from "../../components";
+import { Alert, checkNotAuth } from "../../components";
+import { getApiError } from "../../helpers/getApiError";
 import "../Login/index.scss";
 
 const Register = () => {
   const navigate = useNavigate();
+  const [error, setError] = useState();
   return (
     <>
-      {/* {error && (
-        <div className="alert alert-error shadow-lg w-1/5 h-[40px] absolute top-2 left-1/2 translate-x-[-50%]">
-          <div className="bg-transparent">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="stroke-current flex-shrink-0 h-6 w-6 bg-transparent"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-            <span className="bg-transparent">{error}</span>
-          </div>
-        </div>
-      )} */}
-      <div className="login-container">
+      {error && <Alert type="error" alert={error} />}
+      <div className="login-container min-h-full">
         <div className="absolute top-5 left-5 z-10 bg-transparent">
           <LogoSmall className="bg-transparent" />
         </div>
@@ -47,13 +31,45 @@ const Register = () => {
               initialValues={{
                 email: "",
                 password: "",
+                confirmPassword: "",
                 username: "",
-                role: "",
+                role: "CUSTOMER",
                 fullname: "",
                 profilePic: "",
               }}
-              onSubmit={async (values) => {
-                console.log(values);
+              validate={(values) => {
+                const errors = {};
+                if (!values.email) {
+                  errors.email = "Email Required";
+                } else if (
+                  !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(
+                    values.email
+                  )
+                ) {
+                  errors.email = "Invalid email address";
+                }
+                if (!values.password) {
+                  errors.password = "Password Required";
+                } else if (
+                  !/^\S*(?=\S{8,})(?=\S*\d)(?=\S*[A-Z])(?=\S*[a-z])(?=\S*[!@#$%^&*? ])\S*$/.test(
+                    values.password
+                  )
+                ) {
+                  errors.password = "Weak password";
+                } else if (values.password != values.confirmPassword) {
+                  errors.confirmPassword = "Passwords do not match";
+                }
+                if (!values.fullname) {
+                  errors.fullname = "Full name required";
+                }
+                if (!values.username) {
+                  errors.username = "Username required";
+                }
+
+                return errors;
+              }}
+              // eslint-disable-next-line no-unused-vars
+              onSubmit={async ({ confirmPassword, ...values }) => {
                 register(values)
                   .then(({ data }) => {
                     console.log(data);
@@ -61,114 +77,160 @@ const Register = () => {
                   })
                   .catch((error) => {
                     console.error(error);
-                    // error?.response?.data
-                    //   ? setError(error.response.data)
-                    //   : setError("Error occurred during Login.");
-                    // setTimeout(() => {
-                    //   setError("");
-                    // }, 5000);
+                    setError(getApiError(error));
+                    setTimeout(() => {
+                      setError("");
+                    }, 5000);
                   });
               }}
             >
-              {() => (
-                <Form className="grid grid-cols-12 w-full gap-x-4 gap-y-1 px-4 justify-items-center">
-                  <div className="col-span-12 xl:col-span-6">
-                    <div className="form-control w-full min-w-[300px] xl:min-w-[150px]">
-                      <label className="label">
-                        <span className="label-text text-black font-semibold text-base">
-                          Email
-                        </span>
-                      </label>
-                      <Field
-                        name="email"
-                        type="email"
-                        placeholder="Enter email."
-                        className="input input-bordered w-full max-w-xs bg-[#fff] text-[#000]"
-                      />
+              {
+                // eslint-disable-next-line no-unused-vars
+                ({ errors, touched }) => (
+                  <Form className="grid grid-cols-12 w-full gap-x-4 gap-y-1 px-4 justify-items-center">
+                    <div className="col-span-12 xl:col-span-6">
+                      <div className="form-control w-full min-w-[300px] xl:min-w-[150px]">
+                        <label className="label">
+                          <span className="label-text text-black font-semibold text-base">
+                            Email <span className="text-[#f00]">*</span>
+                          </span>
+                        </label>
+                        <Field
+                          name="email"
+                          type="email"
+                          placeholder="Enter email."
+                          className="input input-bordered w-full max-w-xs bg-[#fff] text-[#000]"
+                        />
+                        <ErrorMessage
+                          name="email"
+                          render={(msg) => (
+                            <span className="text-[#f00]">{msg}</span>
+                          )}
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div className="col-span-12 xl:col-span-6">
-                    <div className="form-control w-full min-w-[300px] xl:min-w-[150px]">
-                      <label className="label">
-                        <span className="label-text text-black font-semibold text-base">
-                          Password
-                        </span>
-                      </label>
-                      <Field
-                        name="password"
-                        type="password"
-                        placeholder="Enter password."
-                        className="input input-bordered w-full max-w-xs bg-[#fff] text-[#000]"
-                      />
+                    <div className="col-span-12 xl:col-span-6">
+                      <div className="form-control w-full min-w-[300px] xl:min-w-[150px]">
+                        <label className="label">
+                          <span className="label-text text-black font-semibold text-base">
+                            Password <span className="text-[#f00]">*</span>
+                          </span>
+                        </label>
+                        <Field
+                          name="password"
+                          type="password"
+                          placeholder="Enter password."
+                          className="input input-bordered w-full max-w-xs bg-[#fff] text-[#000]"
+                        />
+                        <ErrorMessage
+                          name="password"
+                          render={(msg) => (
+                            <span className="text-[#f00]">{msg}</span>
+                          )}
+                        />
+                      </div>
                     </div>
-                  </div>
+                    <div className="col-span-12 xl:col-span-6">
+                      <div className="form-control w-full min-w-[300px] xl:min-w-[150px]">
+                        <label className="label">
+                          <span className="label-text text-black font-semibold text-base">
+                            Confirm Password{" "}
+                            <span className="text-[#f00]">*</span>
+                          </span>
+                        </label>
+                        <Field
+                          name="confirmPassword"
+                          type="password"
+                          placeholder="Enter password."
+                          className="input input-bordered w-full max-w-xs bg-[#fff] text-[#000]"
+                        />
+                        <ErrorMessage
+                          name="confirmPassword"
+                          render={(msg) => (
+                            <span className="text-[#f00]">{msg}</span>
+                          )}
+                        />
+                      </div>
+                    </div>
 
-                  <div className="col-span-12 xl:col-span-6">
-                    <div className="form-control w-full min-w-[300px] xl:min-w-[150px]">
-                      <label className="label">
-                        <span className="label-text text-black font-semibold text-base">
-                          Full Name
-                        </span>
-                      </label>
-                      <Field
-                        name="fullname"
-                        type="text"
-                        placeholder="Enter full name."
-                        className="input input-bordered w-full max-w-xs bg-[#fff] text-[#000]"
-                      />
+                    <div className="col-span-12 xl:col-span-6">
+                      <div className="form-control w-full min-w-[300px] xl:min-w-[150px]">
+                        <label className="label">
+                          <span className="label-text text-black font-semibold text-base">
+                            Full Name <span className="text-[#f00]">*</span>
+                          </span>
+                        </label>
+                        <Field
+                          name="fullname"
+                          type="text"
+                          placeholder="Enter full name."
+                          className="input input-bordered w-full max-w-xs bg-[#fff] text-[#000]"
+                        />
+                        <ErrorMessage
+                          name="fullname"
+                          render={(msg) => (
+                            <span className="text-[#f00]">{msg}</span>
+                          )}
+                        />
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="col-span-12 xl:col-span-6">
-                    <div className="form-control w-full min-w-[300px] xl:min-w-[150px]">
-                      <label className="label">
-                        <span className="label-text text-black font-semibold text-base">
-                          Username
-                        </span>
-                      </label>
-                      <Field
-                        name="username"
-                        type="text"
-                        placeholder="Enter username."
-                        className="input input-bordered w-full max-w-xs bg-[#fff] text-[#000]"
-                      />
+                    <div className="col-span-12 xl:col-span-6">
+                      <div className="form-control w-full min-w-[300px] xl:min-w-[150px]">
+                        <label className="label">
+                          <span className="label-text text-black font-semibold text-base">
+                            Username <span className="text-[#f00]">*</span>
+                          </span>
+                        </label>
+                        <Field
+                          name="username"
+                          type="text"
+                          placeholder="Enter username."
+                          className="input input-bordered w-full max-w-xs bg-[#fff] text-[#000]"
+                        />
+                        <ErrorMessage
+                          name="username"
+                          render={(msg) => (
+                            <span className="text-[#f00]">{msg}</span>
+                          )}
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div className="col-span-12 xl:col-span-6">
-                    <div className="form-control w-full min-w-[300px] xl:min-w-[150px]">
-                      <label className="label">
-                        <span className="label-text text-black font-semibold text-base">
-                          Profile Picture{" "}
-                        </span>
-                      </label>
-                      <Field
-                        name="profilePic"
-                        type="text"
-                        placeholder="Enter URL."
-                        className="input input-bordered w-full max-w-xs bg-[#fff] text-[#000]"
-                      />
+                    <div className="col-span-12 xl:col-span-6">
+                      <div className="form-control w-full min-w-[300px] xl:min-w-[150px]">
+                        <label className="label">
+                          <span className="label-text text-black font-semibold text-base">
+                            Profile Picture{" "}
+                          </span>
+                        </label>
+                        <Field
+                          name="profilePic"
+                          type="text"
+                          placeholder="Enter URL."
+                          className="input input-bordered w-full max-w-xs bg-[#fff] text-[#000]"
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div className="col-span-12 xl:col-span-6">
-                    <div className="form-control w-full min-w-[300px] xl:min-w-[200px]">
-                      <label className="label">
-                        <span className="label-text text-black font-semibold text-base">
-                          Role
-                        </span>
-                      </label>
-                      <Field
-                        as="select"
-                        name="role"
-                        className="select w-full max-w-xs bg-[#fff] text-[#000]"
-                        placeholder="Select Role"
-                      >
-                        <option value="CUSTOMER">Customer</option>
-                        <option value="VENDOR">Vendor</option>
-                      </Field>
+                    <div className="col-span-12 xl:col-span-6">
+                      <div className="form-control w-full min-w-[300px] xl:min-w-[200px]">
+                        <label className="label">
+                          <span className="label-text text-black font-semibold text-base">
+                            Role <span className="text-[#f00]">*</span>
+                          </span>
+                        </label>
+                        <Field
+                          as="select"
+                          name="role"
+                          className="select w-full max-w-xs bg-[#fff] text-[#000]"
+                          placeholder="Select Role"
+                        >
+                          <option value="CUSTOMER">Customer</option>
+                          <option value="VENDOR">Vendor</option>
+                        </Field>
+                      </div>
                     </div>
-                  </div>
 
-                  {/* <div className="col-span-12 justify-self-center mt-5  ml-20">
+                    {/* <div className="col-span-12 justify-self-center mt-5  ml-20">
                     <label className="block font-semibold text-base text-[#000]">
                       Photo
                     </label>
@@ -192,18 +254,19 @@ const Register = () => {
                       </div>
                     </div>
                   </div> */}
-                  <div className="col-span-12 justify-self-center mt-5">
-                    <div className="flex justify-center items-center">
-                      <button
-                        className="login-button btn-md  min-w-[300px]"
-                        type="submit"
-                      >
-                        Register
-                      </button>
+                    <div className="col-span-12 justify-self-center mt-5">
+                      <div className="flex justify-center items-center">
+                        <button
+                          className="login-button btn-md  min-w-[300px]"
+                          type="submit"
+                        >
+                          Register
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                </Form>
-              )}
+                  </Form>
+                )
+              }
             </Formik>
             <span className="text-black text-base font-semibold mt-5">
               Already have an account?

@@ -14,20 +14,20 @@ const Sidebar = () => {
       {!isOpen ? (
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="fixed z-30 flex items-center cursor-pointer left-10 top-8 "
+          className="absolute left-8 md:left-14 top-10 "
         >
           <MenuIcon className="scale-125" fill="#333435" />
         </button>
       ) : (
         <button
-          className="text-4xl text-white fixed top-6 left-10 bg-black z-10"
+          className="text-4xl text-white fixed top-10 left-8 md:left-14 bg-black z-40"
           onClick={() => setIsOpen(!isOpen)}
         >
           X
         </button>
       )}
       <div
-        className={`fixed top-0 left-0 bg-black min-w-[300px] w-[20vw] h-full ${
+        className={`fixed top-0 left-0 bg-black min-w-[300px] w-[20vw] h-full z-30 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } ease-in duration-300`}
       >

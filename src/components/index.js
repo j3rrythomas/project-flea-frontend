@@ -1,8 +1,19 @@
 import CustomCursor from "./CustomCursor";
-import Navbar from "./Navbar";
 import checkAuth from "./checkAuth";
 import checkNotAuth from "./checkNotAuth";
-import Sidebar from "./Sidebar";
 import withSidebar from "./withSidebar";
+import withNavbar from "./withNavbar";
+import HomeProducts from "./HomeProducts";
+import ProductCard from "./ProductCard";
+import Alert from "./Alert";
 
-export { CustomCursor, Navbar, checkAuth, checkNotAuth, withSidebar, Sidebar };
+export {
+  CustomCursor,
+  checkAuth,
+  checkNotAuth,
+  withSidebar,
+  withNavbar,
+  HomeProducts,
+  ProductCard,
+  Alert,
+};

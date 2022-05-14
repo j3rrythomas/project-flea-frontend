@@ -6,7 +6,8 @@ import "./index.scss";
 import { loginReq } from "../../api/auth/Login";
 import { login } from "../../reducers/authSlice";
 import { useState } from "react";
-import { checkNotAuth } from "../../components";
+import { Alert, checkNotAuth } from "../../components";
+import { getApiError } from "../../helpers/getApiError";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -14,27 +15,8 @@ const Login = () => {
   const [error, setError] = useState("");
   return (
     <>
-      {error && (
-        <div className="alert alert-error shadow-lg w-1/5 h-[40px] absolute top-2 left-1/2 translate-x-[-50%]">
-          <div className="bg-transparent">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="stroke-current flex-shrink-0 h-6 w-6 bg-transparent"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-            <span className="bg-transparent">{error}</span>
-          </div>
-        </div>
-      )}
-      <div className="login-container">
+      {error && <Alert alert={error} type="error" />}
+      <div className="login-container min-h-full">
         <div className="absolute top-5 left-5 z-10 bg-transparent">
           <LogoSmall className="bg-transparent" />
         </div>
@@ -53,6 +35,23 @@ const Login = () => {
                 email: "",
                 password: "",
               }}
+              validate={(values) => {
+                const errors = {};
+                if (!values.email) {
+                  errors.email = "Email Required";
+                } else if (
+                  !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(
+                    values.email
+                  )
+                ) {
+                  errors.email = "Invalid email address";
+                }
+                if (!values.password) {
+                  errors.password = "Password Required";
+                }
+
+                return errors;
+              }}
               onSubmit={async (values) => {
                 loginReq(values)
                   .then(({ data: { _id, accessToken, role } }) => {
@@ -62,65 +61,68 @@ const Login = () => {
                     navigate("/");
                   })
                   .catch((error) => {
-                    error?.response?.data
-                      ? setError(error.response.data)
-                      : setError("Error occurred during Login.");
+                    setError(getApiError(error));
                     setTimeout(() => {
                       setError("");
                     }, 5000);
                   });
               }}
             >
-              {() => (
-                <Form className="flex w-2/3 flex-col justify-evenly">
-                  <div className="flex flex-col justify-between mb-10 items-center">
-                    <div className="form-control w-full max-w-xs">
-                      <label className="label">
-                        <span className="label-text text-black font-semibold text-base">
-                          Email
-                        </span>
-                      </label>
-                      <Field
-                        name="email"
-                        type="email"
-                        placeholder="Enter email."
-                        className="input input-bordered w-full bg-[#fff] text-[#000]"
-                      />
+              {
+                // eslint-disable-next-line no-unused-vars
+                ({ errors, touched }) => (
+                  <Form className="flex w-2/3 flex-col justify-evenly">
+                    <div className="flex flex-col justify-between mb-10 items-center">
+                      <div className="form-control w-full max-w-xs">
+                        <label className="label">
+                          <span className="label-text text-black font-semibold text-base">
+                            Email <span className="text-[#f00]">*</span>
+                          </span>
+                        </label>
+                        <Field
+                          name="email"
+                          type="email"
+                          placeholder="Enter email."
+                          className="input input-bordered w-full bg-[#fff] text-[#000]"
+                        />
+                        <ErrorMessage
+                          name="email"
+                          render={(msg) => (
+                            <span className="text-[#f00]">{msg}</span>
+                          )}
+                        />
+                      </div>
+                      <div className="form-control w-full max-w-xs">
+                        <label className="label">
+                          <span className="label-text text-black font-semibold text-base">
+                            Password <span className="text-[#f00]">*</span>
+                          </span>
+                        </label>
+                        <Field
+                          name="password"
+                          type="password"
+                          placeholder="Enter password."
+                          className="input input-bordered w-full bg-[#fff] text-[#000]"
+                        />
+                        <ErrorMessage
+                          name="password"
+                          render={(msg) => (
+                            <span className="text-[#f00]">{msg}</span>
+                          )}
+                        />
+                      </div>
                     </div>
-                    <div className="form-control w-full max-w-xs">
-                      <label className="label">
-                        <span className="label-text text-black font-semibold text-base">
-                          Password
-                        </span>
-                      </label>
-                      <Field
-                        name="password"
-                        type="password"
-                        placeholder="Enter password."
-                        className="input input-bordered w-full bg-[#fff] text-[#000]"
-                      />
+                    <div className="flex justify-center items-center">
+                      <button
+                        className="login-button btn-md  min-w-[300px]"
+                        type="submit"
+                      >
+                        Login
+                      </button>
                     </div>
-                  </div>
-                  <span>
-                    <ErrorMessage
-                      name="email"
-                      render={(msg) => <div className="error-msg">{msg}</div>}
-                    />
-                    <ErrorMessage
-                      name="password"
-                      render={(msg) => <div className="error-msg">{msg}</div>}
-                    />
-                  </span>
-                  <div className="flex justify-center items-center">
-                    <button
-                      className="login-button btn-md  min-w-[300px]"
-                      type="submit"
-                    >
-                      Login
-                    </button>
-                  </div>
-                </Form>
-              )}
+                  </Form>
+                )
+              }
             </Formik>
             <span className="text-black text-base font-semibold mt-2">
               Dont have an account?
