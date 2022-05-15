@@ -6,6 +6,6 @@ export const getAllProducts = async () => {
 };
 
 export const getProductById = async (id) => {
-  const response = await apiAxios.get(`/products/${id}`);
+  const response = await apiAxios.get(`/purchase/${id}`);
   return response;
 };

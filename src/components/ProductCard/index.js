@@ -35,7 +35,7 @@ const ProductCard = ({ product }) => {
         </div>
         <div className="card-actions justify-end items-center mt-4">
           <p className="text-lg font-bold text-black">
-            ₹+{product.price.toFixed(2)}
+            ₹{product.price.toFixed(2)}
           </p>
           <button className="btn bg-primaryColor hover:bg-white hover:text-darkGreen text-black">
             Add to Cart
