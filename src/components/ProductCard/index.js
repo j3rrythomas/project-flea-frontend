@@ -1,20 +1,27 @@
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
+  const navigate = useNavigate();
+  const imgSrc = product.image?.includes("cloudinary")
+    ? product.image
+    : "https://api.lorem.space/image/furniture";
+
   return (
-    <div className="card card-compact col-span-12 md:col-span-6 xl:col-span-4 bg-base-100 shadow-xl max-w-[300px] sm:max-w-[400px] justify-self-center">
-      <figure>
+    <div
+      className="card card-compact col-span-12 md:col-span-6 xl:col-span-4 bg-base-100 shadow-xl max-w-[300px] sm:max-w-[400px] justify-self-center hover:scale-110 transition-all duration-[400ms] ease-in-out"
+      onClick={() => navigate(`/products/${product._id}`)}
+    >
+      <figure className="relative h-full">
+        <img src={imgSrc} className="max-h-80 min-h-[250px] z-10 p-8" />
         <img
-          src="https://api.lorem.space/image/furniture?w=400"
-          alt="Fashion Image"
-          className="sm:w-[400px]"
+          src={imgSrc}
+          className="h-full absolute top-0 left-0 w-full z-0 blur-md"
         />
       </figure>
       <div className="card-body bg-primaryColor">
         <h2 className="card-title text-black font-semibold">{product.name}</h2>
-        <p className="text-black">
-          If a dog chews shoes whose shoes does he choose?
-        </p>
+        <p className="text-black">{product.description}</p>
 
         <div className="card-actions justify-end">
           {product.tags.map((tag) => (

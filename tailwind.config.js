@@ -11,5 +11,5 @@ module.exports = {
       white: "#eee",
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [require("daisyui"), require("tailwind-scrollbar-hide")],
 };
