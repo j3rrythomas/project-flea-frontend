@@ -5,7 +5,7 @@ import withSidebar from "./withSidebar";
 import withNavbar from "./withNavbar";
 import HomeProducts from "./HomeProducts";
 import ProductCard from "./ProductCard";
-import Alert from "./Alert";
+import { Error, Warning, Success } from "./Alert";
 
 export {
   CustomCursor,
@@ -15,5 +15,7 @@ export {
   withNavbar,
   HomeProducts,
   ProductCard,
-  Alert,
+  Error,
+  Warning,
+  Success,
 };

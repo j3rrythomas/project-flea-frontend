@@ -6,7 +6,7 @@ import "./index.scss";
 import { loginReq } from "../../api/auth/Login";
 import { login } from "../../reducers/authSlice";
 import { useState } from "react";
-import { Alert, checkNotAuth } from "../../components";
+import { Error, checkNotAuth } from "../../components";
 import { getApiError } from "../../helpers/getApiError";
 
 const Login = () => {
@@ -15,7 +15,7 @@ const Login = () => {
   const [error, setError] = useState("");
   return (
     <>
-      {error && <Alert alert={error} type="error" />}
+      {error && <Error text={error} />}
       <div className="login-container min-h-full">
         <div className="absolute top-5 left-5 z-10 bg-transparent">
           <LogoSmall className="bg-transparent" />

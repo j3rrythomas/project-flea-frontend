@@ -18,7 +18,9 @@ const HomeProducts = () => {
           <div className="card-actions justify-end">
             <button
               className="btn btn-lg bg-primaryColor hover:bg-black hover:text-primaryColor text-black"
-              onClick={() => navigate("/products")}
+              onClick={() =>
+                navigate("/products", { state: { category: "Jewellery" } })
+              }
             >
               Shop Now
             </button>

@@ -1,7 +1,7 @@
 import apiAxios from "..";
 
-export const getAllProducts = async () => {
-  const response = await apiAxios.get("/purchase");
+export const getProducts = async (options) => {
+  const response = await apiAxios.get(`/purchase`, { params: options });
   return response;
 };
 

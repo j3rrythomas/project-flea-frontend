@@ -14,13 +14,13 @@ const Sidebar = () => {
       {!isOpen ? (
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="absolute left-8 md:left-14 top-10 "
+          className="absolute left-8 md:left-14 top-24"
         >
           <MenuIcon className="scale-125" fill="#333435" />
         </button>
       ) : (
         <button
-          className="text-4xl text-white fixed top-10 left-8 md:left-14 bg-black z-40"
+          className="text-4xl text-white fixed top-24 left-8 md:left-14 bg-black z-40"
           onClick={() => setIsOpen(!isOpen)}
         >
           X

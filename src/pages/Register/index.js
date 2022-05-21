@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { register } from "../../api/auth/Register";
 import { LogoSmall } from "../../assets/images";
-import { Alert, checkNotAuth } from "../../components";
+import { Error, checkNotAuth } from "../../components";
 import { getApiError } from "../../helpers/getApiError";
 import "../Login/index.scss";
 
@@ -12,7 +12,7 @@ const Register = () => {
   const [error, setError] = useState();
   return (
     <>
-      {error && <Alert type="error" alert={error} />}
+      {error && <Error text={error} />}
       <div className="login-container min-h-full">
         <div className="absolute top-5 left-5 z-10 bg-transparent">
           <LogoSmall className="bg-transparent" />

@@ -1,14 +1,16 @@
 import "./index.scss";
-import { Logo, LogoSmall } from "../../assets/images";
+import { LogoSmall } from "../../assets/images";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+  const itemCount = useSelector((state) => state.customer.itemCount);
   return (
     <div className="nav-container">
-      <div className="invisible"></div>
-      <Logo className="logo" />
-      <LogoSmall className="logo-small rounded-md" />
+      {/* <Logo className="logo" /> */}
+      <LogoSmall className="logo rounded-md" />
       <div className="cart-div text-black">
-        Cart<div className="order-count">99+</div>
+        Cart
+        <div className="order-count">{itemCount > 99 ? "99+" : itemCount}</div>
       </div>
     </div>
   );

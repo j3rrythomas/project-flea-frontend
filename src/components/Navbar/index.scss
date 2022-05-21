@@ -41,21 +41,3 @@ svg {
   margin-left: 0.5rem;
   margin-top: -0.25rem;
 }
-
-@media (max-width: 600px) {
-  .logo {
-    display: none;
-  }
-  .logo-small {
-    display: inline;
-  }
-}
-
-@media (min-width: 600px) {
-  .logo {
-    display: inline;
-  }
-  .logo-small {
-    display: none;
-  }
-}
