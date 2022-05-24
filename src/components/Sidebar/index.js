@@ -41,8 +41,12 @@ const Sidebar = () => {
             <button
               className="btn-md  min-w-[300px] text-2xl text-[#fff] bg-transparent hover:scale-125 transition-all"
               onClick={() => {
-                dispatch(isAuthenticated ? logout() : navigate("/login"));
                 setIsOpen(false);
+                if (isAuthenticated) {
+                  dispatch(logout());
+                } else {
+                  navigate("/login");
+                }
               }}
             >
               {isAuthenticated ? "Logout" : "Login"}

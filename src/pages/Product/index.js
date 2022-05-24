@@ -125,46 +125,10 @@ const Product = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col justify-evenly items-center lg:h-[600px] lg:max-w-[400px]">
-                <h1 className="text-5xl font-bold text-black text-center">
+              <div className="flex flex-col justify-evenly items-center h-[600px] lg:max-w-[400px]">
+                <h1 className="text-3xl md:text-5xl font-bold text-black text-center">
                   {product.name}
                 </h1>
-
-                <div className="rating rating-lg rating-half">
-                  <input
-                    disabled
-                    type="radio"
-                    name="rating-10"
-                    className="rating-hidden"
-                  />
-                  {[...Array(10).keys()].map((_, index) => {
-                    return (
-                      <input
-                        disabled
-                        key={index}
-                        type="radio"
-                        name="rating-10"
-                        className={`bg-black mask mask-star-2 hover:cursor-default ${
-                          index % 2 === 0 ? "mask-half-1 " : "mask-half-2"
-                        }`}
-                        defaultChecked={
-                          Math.round(product.rating * 2) === index + 1
-                        }
-                      />
-                    );
-                  })}
-                </div>
-                <p className="text-lg font-semibold text-black text-center">
-                  {product.description ||
-                    "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis explicabo aspernatur dolorem beatae pariatur minima, nihil veritatis iure quibusdam vel?"}
-                </p>
-                <h2 className="text-3xl font-bold text-black">
-                  ₹{product.price.toFixed(2)}
-                </h2>
-                <p className="text-lg font-semibold text-black text-center">
-                  <span className="text-xl">Category:</span>{" "}
-                  {product.category || "Lorem ipsum"}
-                </p>
                 <div className="text-lg font-semibold text-black text-center">
                   <span className="text-xl">Tags:</span>
                   {product.tags.map((tag, index) => (
@@ -176,28 +140,74 @@ const Product = () => {
                     </div>
                   ))}
                 </div>
+
+                <p className="text-lg font-semibold text-black text-center">
+                  {product.description ||
+                    "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis explicabo aspernatur dolorem beatae pariatur minima, nihil veritatis iure quibusdam vel?"}
+                </p>
+
+                <p className="text-lg font-semibold text-black text-center">
+                  Category:{" "}
+                  <span className="text-xl">
+                    {product.category || "Lorem ipsum"}
+                  </span>
+                </p>
+
+                <h2 className="text-3xl font-bold text-black">
+                  Price: ₹{product.price.toFixed(2)}
+                </h2>
+                <div className="flex flex-col">
+                  <button
+                    className="btn btn-outline w-[300px] my-1 text-white bg-darkGreen hover:bg-primaryColor hover:text-black"
+                    onClick={() => {
+                      dispatch(
+                        addToCart({ productId: product._id, quantity: 1 })
+                      );
+                      setCartChange(true);
+                      setTimeout(() => setCartChange(false), 1500);
+                    }}
+                  >
+                    Add to Cart
+                  </button>
+                  <button className="btn btn-outline w-[300px] my-1 text-white bg-darkGreen hover:bg-primaryColor hover:text-black">
+                    Buy Now
+                  </button>
+                  <button className="btn btn-outline w-[300px] my-1 text-white bg-darkGreen hover:bg-primaryColor hover:text-black">
+                    Add to Wishlist
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-          <div className="flex flex-col-reverse lg:flex-row justify-between items-center w-10/12 pt-12">
-            <div className="text-4xl text-black">Options</div>
-            <div className="flex flex-col lg:mr-12">
-              <button
-                className="btn btn-outline w-[300px] my-1 text-white bg-darkGreen hover:bg-primaryColor hover:text-black"
-                onClick={() => {
-                  dispatch(addToCart({ productId: product._id, quantity: 1 }));
-                  setCartChange(true);
-                  setTimeout(() => setCartChange(false), 1500);
-                }}
-              >
-                Add to Cart
-              </button>
-              <button className="btn btn-outline w-[300px] my-1 text-white bg-darkGreen hover:bg-primaryColor hover:text-black">
-                Buy Now
-              </button>
-              <button className="btn btn-outline w-[300px] my-1 text-white bg-darkGreen hover:bg-primaryColor hover:text-black">
-                Add to Wishlist
-              </button>
+          <div className="flex flex-col justify-between items-center md:items-start pt-12 w-10/12">
+            <div className="rating rating-lg rating-half">
+              <input
+                disabled
+                type="radio"
+                name="rating-10"
+                className="rating-hidden"
+              />
+              {[...Array(10).keys()].map((_, index) => {
+                return (
+                  <input
+                    disabled
+                    key={index}
+                    type="radio"
+                    name="rating-10"
+                    className={`bg-black mask mask-star-2 hover:cursor-default ${
+                      index % 2 === 0 ? "mask-half-1 " : "mask-half-2"
+                    }`}
+                    defaultChecked={
+                      Math.round(product.rating * 2) === index + 1
+                    }
+                  />
+                );
+              })}
+            </div>
+            <div>
+              <p className="text-2xl font-semibold text-black text-center md:ml-4 mt-4">
+                Rating:{product.rating}
+              </p>
             </div>
           </div>
         </div>
