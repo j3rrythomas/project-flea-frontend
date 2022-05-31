@@ -10,6 +10,7 @@ import "../Login/index.scss";
 const Register = () => {
   const navigate = useNavigate();
   const [error, setError] = useState();
+  const [profilePic, setProfilePic] = useState();
   return (
     <>
       {error && <Error text={error} />}
@@ -35,7 +36,6 @@ const Register = () => {
                 username: "",
                 role: "CUSTOMER",
                 fullname: "",
-                profilePic: "",
               }}
               validate={(values) => {
                 const errors = {};
@@ -70,7 +70,10 @@ const Register = () => {
               }}
               // eslint-disable-next-line no-unused-vars
               onSubmit={async ({ confirmPassword, ...values }) => {
-                register(values)
+                var formData = new FormData();
+                formData.append("profilePic", profilePic);
+                formData.append("userData", JSON.stringify(values));
+                register(formData)
                   .then(({ data }) => {
                     console.log(data);
                     navigate("/login");
@@ -196,7 +199,7 @@ const Register = () => {
                         />
                       </div>
                     </div>
-                    <div className="col-span-12 xl:col-span-6">
+                    {/* <div className="col-span-12 xl:col-span-6">
                       <div className="form-control w-full min-w-[300px] xl:min-w-[150px]">
                         <label className="label">
                           <span className="label-text text-black font-semibold text-base">
@@ -210,7 +213,7 @@ const Register = () => {
                           className="input input-bordered w-full max-w-xs bg-[#fff] text-[#000]"
                         />
                       </div>
-                    </div>
+                    </div> */}
                     <div className="col-span-12 xl:col-span-6">
                       <div className="form-control w-full min-w-[300px] xl:min-w-[200px]">
                         <label className="label">
@@ -230,30 +233,32 @@ const Register = () => {
                       </div>
                     </div>
 
-                    {/* <div className="col-span-12 justify-self-center mt-5  ml-20">
-                    <label className="block font-semibold text-base text-[#000]">
-                      Photo
-                    </label>
-                    <div className="mt-1 flex items-center">
-                      <span className="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100">
-                        <svg
-                          className="h-full w-full  bg-gray"
-                          fill="#fff"
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                        </svg>
-                      </span>
+                    <div className="col-span-12 justify-self-center mt-5  ml-20">
+                      <label className="block font-semibold text-base text-[#000]">
+                        Photo
+                      </label>
+                      <div className="mt-1 flex items-center">
+                        <span className="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100">
+                          <svg
+                            className="h-full w-full  bg-gray"
+                            fill="#fff"
+                            viewBox="0 0 24 24"
+                          >
+                            <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                          </svg>
+                        </span>
 
-                      <div className="mt-5">
-                        <Field
-                          name="profilePic"
-                          type="file"
-                          className="input w-full max-w-xs bg-transparent xl:bg-primaryColor focus:outline-none text-[#000] file:bg-[#fff] file:border-none  file:rounded-md file:p-2"
-                        />
+                        <div className="mt-5">
+                          <input
+                            name="profilePic"
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => setProfilePic(e.target.files[0])}
+                            className="input w-full max-w-xs bg-transparent xl:bg-primaryColor focus:outline-none text-[#000] file:bg-[#fff] file:border-none  file:rounded-md file:p-2"
+                          />
+                        </div>
                       </div>
                     </div>
-                  </div> */}
                     <div className="col-span-12 justify-self-center mt-5">
                       <div className="flex justify-center items-center">
                         <button

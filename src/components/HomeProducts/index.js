@@ -78,7 +78,7 @@ const HomeProducts = () => {
         </figure>
         <div className="card-body flex justify-center items-center text-center">
           <div className="flex flex-col items-center">
-            <h1 className="card-title text-5xl  text-[#fff] mb-4">Utensils</h1>
+            <h1 className="card-title text-5xl  text-[#fff] mb-4">Crockery</h1>
             <p className="text-2xl text-[#fff]">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus,
               repellendus?
@@ -89,7 +89,64 @@ const HomeProducts = () => {
       <div
         className="col-span-12 mx-10 card bg-base-100 shadow-xl image-full h-[800px] hover:scale-105 cursor-pointer transition-all duration-[400ms] ease-in-out"
         onClick={() =>
-          navigate("/products", { state: { category: "Jewellery" } })
+          navigate("/products", { state: { category: "Handicrafts" } })
+        }
+      >
+        <figure className="h-[800px]">
+          <img src={JewelryCardImg} alt="Jewelry Card" width="100%" />
+        </figure>
+        <div className="card-body flex justify-center items-center text-center">
+          <div className="flex flex-col items-center w-full">
+            <h1 className="card-title text-5xl md:text-7xl  text-[#fff] mb-4">
+              Handicrafts
+            </h1>
+            <div className="flex-col md:flex w-full justify-around md:mt-10 items-end">
+              <p
+                className="text-3xl text-[#c2881f] mt-5"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigate("/products", { state: { category: "Textiles" } });
+                }}
+              >
+                Textiles
+              </p>
+              <p
+                className="text-3xl text-[#c2881f] mt-5"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigate("/products", { state: { category: "Wood Crafts" } });
+                }}
+              >
+                Wood Crafts
+              </p>
+              <p
+                className="text-3xl text-[#c2881f] mt-5"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigate("/products", {
+                    state: { category: "Paper Crafts" },
+                  });
+                }}
+              >
+                Paper Crafts
+              </p>
+              <p
+                className="text-3xl text-[#c2881f] mt-5"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigate("/products", { state: { category: "Pottery" } });
+                }}
+              >
+                Pottery
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="col-span-12 lg:col-span-4 m-10 card bg-base-100 shadow-xl image-full h-[800px] hover:scale-105 cursor-pointer transition-all duration-[400ms] ease-in-out"
+        onClick={() =>
+          navigate("/products", { state: { category: "Ornaments" } })
         }
       >
         <figure className="h-[800px]">
@@ -98,7 +155,7 @@ const HomeProducts = () => {
         <div className="card-body flex justify-center items-center text-center">
           <div className="flex flex-col items-center">
             <h1 className="card-title text-5xl md:text-7xl  text-[#fff] mb-4">
-              Jewelry
+              Ornaments
             </h1>
             <p className="text-2xl text-[#fff]">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus,
