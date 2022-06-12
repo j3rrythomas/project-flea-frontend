@@ -1,7 +1,15 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.scss";
 import { CustomCursor } from "./components";
-import { Home, Login, Products, Register, Product } from "./pages";
+import {
+  Home,
+  Login,
+  Products,
+  Register,
+  Product,
+  VendorHome,
+  Error,
+} from "./pages";
 
 const App = () => {
   return (
@@ -14,6 +22,9 @@ const App = () => {
           <Route exact path="/register" element={<Register />} />
           <Route exact path="/products" element={<Products />} />
           <Route exact path="/products/:id" element={<Product />} />
+          <Route exact path="/vendor-home" element={<VendorHome />} />
+          <Route path="/errorPage" element={<Error />} />
+          <Route path="*" element={<Error />} />
         </Routes>
       </div>
     </BrowserRouter>

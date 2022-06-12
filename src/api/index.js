@@ -14,10 +14,8 @@ const setToken = () => {
     ] = `Bearer ${state.auth.authToken}`;
   } else {
     delete apiAxios.defaults.headers.common["token"];
-    state.auth.isAuthenticated = false;
-    state.auth.authToken = "";
   }
 };
-store.subscribe(setToken);
+store?.subscribe(setToken);
 
 export default apiAxios;

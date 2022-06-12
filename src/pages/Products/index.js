@@ -11,7 +11,6 @@ const Products = () => {
   const [error, setError] = useState();
   const [loading, isLoading] = useState(false);
   useEffect(() => {
-    console.log(options);
     isLoading(true);
     getProducts(options)
       .then((response) => {

@@ -74,8 +74,7 @@ const Register = () => {
                 formData.append("profilePic", profilePic);
                 formData.append("userData", JSON.stringify(values));
                 register(formData)
-                  .then(({ data }) => {
-                    console.log(data);
+                  .then(() => {
                     navigate("/login");
                   })
                   .catch((error) => {

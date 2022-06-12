@@ -1,14 +1,18 @@
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 
-const checkAuth = (Component) => {
+const checkAuth = (Component, type) => {
   const AuthRoute = () => {
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-
+    console.log(isAuthenticated);
+    const role = useSelector((state) => state.auth.role);
     if (isAuthenticated) {
-      return <Component />;
+      if (role === "VENDOR" || type === role) return <Component />;
+      else {
+        return <Navigate to="/errorPage" />;
+      }
     }
-    return <Navigate to="/login" />;
+    return <Navigate to="/" />;
   };
   return AuthRoute;
 };

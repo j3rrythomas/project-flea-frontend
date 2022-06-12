@@ -11,7 +11,10 @@
     "browser": true,
     "es6": true
   },
-  "rules": { "react/react-in-jsx-scope": "off" },
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
+  },
   "settings": {
     "react": {
       "version": "detect"

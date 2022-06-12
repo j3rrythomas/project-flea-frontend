@@ -3,11 +3,15 @@ import { Navigate } from "react-router-dom";
 
 const checkNotAuth = (Component) => {
   const AuthRoute = () => {
-    const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+    const { isAuthenticated, role } = useSelector((state) => state.auth);
     if (!isAuthenticated) {
       return <Component />;
     }
-    return <Navigate to="/" />;
+    return role === "CUSTOMER" ? (
+      <Navigate to="/" />
+    ) : (
+      <Navigate to="/vendor-home" />
+    );
   };
   return AuthRoute;
 };

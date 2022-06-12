@@ -58,7 +58,11 @@ const Login = () => {
                     dispatch(
                       login({ userId: _id, authToken: accessToken, role })
                     );
-                    navigate("/");
+                    if (role === "CUSTOMER") {
+                      navigate("/");
+                    } else {
+                      navigate("/vendor-home");
+                    }
                   })
                   .catch((error) => {
                     setError(getApiError(error));

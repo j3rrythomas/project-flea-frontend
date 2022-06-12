@@ -9,6 +9,7 @@ module.exports = {
       green: "#6d9236",
       darkGreen: "#014421",
       white: "#eee",
+      cyan: "#175D62",
     },
   },
   plugins: [require("daisyui"), require("tailwind-scrollbar-hide")],
