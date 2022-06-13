@@ -4,4 +4,4 @@ const Orders = () => {
   return <>Orders-This change is made by abhijithlal v</>;
 };
 
-export default checkAuth(withSidebar(withNavbar(Orders)));
+export default checkAuth(withSidebar(withNavbar(Orders)), "CUSTOMER");
