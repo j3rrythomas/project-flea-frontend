@@ -9,6 +9,8 @@ import {
   Product,
   VendorHome,
   Error,
+  Orders,
+  Checkout,
 } from "./pages";
 
 const App = () => {
@@ -23,6 +25,8 @@ const App = () => {
           <Route exact path="/products" element={<Products />} />
           <Route exact path="/products/:id" element={<Product />} />
           <Route exact path="/vendor-home" element={<VendorHome />} />
+          <Route exact path="/orders" element={<Orders />} />
+          <Route exact path="/checkout" element={<Checkout />} />
           <Route path="/errorPage" element={<Error />} />
           <Route path="*" element={<Error />} />
         </Routes>

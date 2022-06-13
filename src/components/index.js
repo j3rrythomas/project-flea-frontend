@@ -7,6 +7,7 @@ import HomeProducts from "./HomeProducts";
 import ProductCard from "./ProductCard";
 import { Error, Warning, Success } from "./Alert";
 import withVendorDashboard from "./withVendorDashboard";
+import AddProductForm from "./AddProductForm";
 
 export {
   CustomCursor,
@@ -20,4 +21,5 @@ export {
   Warning,
   Success,
   withVendorDashboard,
+  AddProductForm,
 };
