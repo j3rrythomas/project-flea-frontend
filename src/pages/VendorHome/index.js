@@ -19,7 +19,9 @@ const VendorHome = () => {
           </button>
         </div>
       )}
-      {isFormVisible && <AddProductForm />}
+      {isFormVisible && (
+        <AddProductForm closeForm={() => setFormVisible(false)} />
+      )}
     </div>
   );
 };
