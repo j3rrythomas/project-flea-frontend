@@ -8,6 +8,7 @@ import ProductCard from "./ProductCard";
 import { Error, Warning, Success } from "./Alert";
 import withVendorDashboard from "./withVendorDashboard";
 import AddProductForm from "./AddProductForm";
+import CheckoutItem from "./CheckoutItem";
 
 export {
   CustomCursor,
@@ -22,4 +23,5 @@ export {
   Success,
   withVendorDashboard,
   AddProductForm,
+  CheckoutItem,
 };
