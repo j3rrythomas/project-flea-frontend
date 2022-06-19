@@ -5,6 +5,7 @@ import withSidebar from "./withSidebar";
 import withNavbar from "./withNavbar";
 import HomeProducts from "./HomeProducts";
 import ProductCard from "./ProductCard";
+import Order from "./Order";
 import { Error, Warning, Success } from "./Alert";
 import withVendorDashboard from "./withVendorDashboard";
 import AddProductForm from "./AddProductForm";
@@ -23,5 +24,6 @@ export {
   Success,
   withVendorDashboard,
   AddProductForm,
+  Order,
   CheckoutItem,
 };
