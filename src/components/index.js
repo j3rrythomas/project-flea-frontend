@@ -10,6 +10,7 @@ import { Error, Warning, Success } from "./Alert";
 import withVendorDashboard from "./withVendorDashboard";
 import AddProductForm from "./AddProductForm";
 import CheckoutItem from "./CheckoutItem";
+import PlaceOrderItem from "./PlaceOrderItem";
 
 export {
   CustomCursor,
@@ -26,4 +27,5 @@ export {
   AddProductForm,
   Order,
   CheckoutItem,
+  PlaceOrderItem,
 };
