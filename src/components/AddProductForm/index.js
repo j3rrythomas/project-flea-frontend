@@ -1,5 +1,12 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import PropTypes from "prop-types";
+import Select from "react-select";
+
+const options = [
+  { value: "chocolate", label: "Chocolate" },
+  { value: "strawberry", label: "Strawberry" },
+  { value: "vanilla", label: "Vanilla" },
+];
 
 const AddProductForm = ({ closeForm }) => {
   return (
@@ -71,7 +78,7 @@ const AddProductForm = ({ closeForm }) => {
                       placeholder="Enter price to be charged per unit."
                       className="input border border-solid border-gray w-full bg-[#fff] text-[#000] lg:ml-3"
                     />
-                    <span className="h-[3rem]">INR</span>
+                    <span className="h-[3rem] bg-cyan">INR</span>
                   </label>
                   <ErrorMessage
                     name="price"
@@ -95,7 +102,31 @@ const AddProductForm = ({ closeForm }) => {
                     render={(msg) => <span className="text-[#f00]">{msg}</span>}
                   />
                 </div>
-                <div className="col-span-12 flex justify-center items-center mt-8">
+                <div className="col-span-12 lg:col-span-6 flex flex-row my-2">
+                  <label className="label w-[150px]">
+                    <span className="label-text text-black font-semibold text-base text-right lg:ml-4">
+                      Stock <span className="text-[#f00]">*</span>
+                    </span>
+                  </label>
+                  <Select
+                    name="stock"
+                    options={options}
+                    styles={{
+                      control: (provided, _state) => ({
+                        ...provided,
+                        border: "none",
+                      }),
+                    }}
+                    type="number"
+                    placeholder="Enter quantity of product available."
+                    className="input border border-solid border-gray ml-4 w-full bg-[#fff] text-[#000]"
+                  />
+                  <ErrorMessage
+                    name="stock"
+                    render={(msg) => <span className="text-[#f00]">{msg}</span>}
+                  />
+                </div>
+                <div className="col-span-12 flex justify-center items-center mt-8 ">
                   <button
                     className="btn-md bg-cyan text-[#fff] rounded-md w-[200px] mr-8 text-lg font-bold"
                     type="submit"

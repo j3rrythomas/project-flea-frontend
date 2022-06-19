@@ -8,7 +8,7 @@ const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const { isAuthenticated, role } = useSelector((state) => state.auth);
   return (
     <>
       {!isOpen ? (
@@ -33,11 +33,37 @@ const Sidebar = () => {
       >
         <div className="flex flex-col justify-between items-center bg-transparent mt-28 mb-33 h-4/5">
           <div className="bg-transparent">
-            <div className="bg-transparent">A</div>
-            <div className="bg-transparent">B</div>
-            <div className="bg-transparent">C</div>
+            <div className="bg-transparent text-[#fff] text-2xl w-full py-4 text-center px-8 hover:bg-white hover:text-black">
+              Profile
+            </div>
+            <div
+              className="bg-transparent text-[#fff] text-2xl w-full py-4 text-center px-8 hover:bg-white hover:text-black"
+              onClick={() => navigate("/orders")}
+            >
+              Orders
+            </div>
+            <div
+              className="bg-transparent text-[#fff] text-2xl w-full py-4 text-center px-8 hover:bg-white hover:text-black"
+              onClick={() => navigate("/checkout")}
+            >
+              Checkout
+            </div>
+            <div className="bg-transparent text-[#fff] text-2xl w-full py-4 text-center px-8 hover:bg-white hover:text-black">
+              Settings
+            </div>
           </div>
-          <div className="bg-transparent">
+
+          <div className="bg-transparent ml-8">
+            {isAuthenticated && role === "VENDOR" && (
+              <button
+                className="btn-md  min-w-[300px] text-2xl text-[#fff] bg-transparent hover:scale-125 transition-all"
+                onClick={() => {
+                  navigate("/vendor-home");
+                }}
+              >
+                Vendor Dashboard
+              </button>
+            )}
             <button
               className="btn-md  min-w-[300px] text-2xl text-[#fff] bg-transparent hover:scale-125 transition-all"
               onClick={() => {
