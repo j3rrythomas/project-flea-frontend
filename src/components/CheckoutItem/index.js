@@ -1,19 +1,20 @@
 const CheckoutItem = () => {
   return (
-    <tr className="bg-[#fff]">
-      <td>
-        <div className="flex justify-center">
+    <div className="mt-5 bg-[#fff] border-solid flex h-48 rounded-md">
+      <div>
+        <div className="flex mt-5 ml-10">
           <img
-            src="https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aXBob25lfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-            className="object-cover h-28 w-28 rounded-2xl"
+            src="https://i.pinimg.com/474x/22/29/97/2229978df9b298063fce556d227c0392.jpg"
+            className="object-cover h-28 w-28 rounded-md"
             alt="image"
           />
         </div>
-        <div className="flex justify-center items-center mt-4">
+
+        <div className="flex justify-center items-center ml-9 mt-4">
           <button>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="inline-flex w-6 h-6 text-red-600"
+              className="inline-flex w-6 h-6 text-red-600 bg-[#fff]"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -30,12 +31,12 @@ const CheckoutItem = () => {
             type="text"
             name="qty"
             value="2"
-            className="w-12 text-center bg-gray-100 outline-none"
+            className="w-12 text-center text-black text-2xl outline-none"
           />
           <button>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="inline-flex w-6 h-6 text-green-600"
+              className="inline-flex w-6 h-6 text-green-600 bg-[#fff]"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -49,19 +50,22 @@ const CheckoutItem = () => {
             </svg>
           </button>
         </div>
-      </td>
-      <td className="p-4 px-6 text-center whitespace-nowrap">
+      </div>
+      <div className="p-4 px-6 text-center whitespace-nowrap text-xl">
         <div className="flex flex-col items-center justify-center">
-          <h3>Iphone 11</h3>
+          <h3 className="text-2xl text-[#000]">
+            Jimkia Ceramic Plant Container(Aswani White) Hand-Made Product
+          </h3>
+          <h4 className="text-left w-full text-[#945959]">Ceramic</h4>
+          <h4 className="text-left w-full text-[#945959]">Seller:Jimkia</h4>
         </div>
-      </td>
+      </div>
 
-      <td className="p-4 px-6 text-center whitespace-nowrap">$1,000</td>
-      <td className="p-4 px-6 text-center whitespace-nowrap">
+      <div className="p-4 px-6 text-center ml-0 whitespace-nowrap">
         <button>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="w-6 h-6 text-red-400"
+            className="w-6 h-6 text-red-400 bg-[#fff]"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -74,8 +78,13 @@ const CheckoutItem = () => {
             />
           </svg>
         </button>
-      </td>
-    </tr>
+        <div>
+          <h4 className="text-left text-2xl mt-20 bottom-0 right-0 w-full text-black">
+            $249
+          </h4>
+        </div>
+      </div>
+    </div>
   );
 };
 export default CheckoutItem;
