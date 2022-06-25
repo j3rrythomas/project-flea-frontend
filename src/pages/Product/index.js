@@ -186,6 +186,7 @@ const Product = () => {
                 type="radio"
                 name="rating-10"
                 className="rating-hidden"
+                defaultChecked={product.rating < 0}
               />
               {[...Array(10).keys()].map((_, index) => {
                 return (
