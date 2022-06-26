@@ -11,6 +11,7 @@ import withVendorDashboard from "./withVendorDashboard";
 import AddProductForm from "./AddProductForm";
 import CheckoutItem from "./CheckoutItem";
 import PlaceOrderItem from "./PlaceOrderItem";
+import CustomLoader from "./CustomLoader";
 
 export {
   CustomCursor,
@@ -28,4 +29,5 @@ export {
   Order,
   CheckoutItem,
   PlaceOrderItem,
+  CustomLoader,
 };

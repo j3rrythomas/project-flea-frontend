@@ -3,7 +3,13 @@ import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { getProductById } from "../../api/products/get";
 import { LeftArrowIcon } from "../../assets/icons";
-import { Error, Success, withNavbar, withSidebar } from "../../components";
+import {
+  CustomLoader,
+  Error,
+  Success,
+  withNavbar,
+  withSidebar,
+} from "../../components";
 import { getApiError } from "../../helpers/getApiError";
 import { addToCart } from "../../reducers/customerSlice";
 
@@ -36,7 +42,7 @@ const Product = () => {
     <>
       <>{cartChange && <Success text="Added to Cart" />}</>
       {loading ? (
-        "Loading"
+        <CustomLoader />
       ) : error ? (
         alertVisible ? (
           <Error text={error} />
@@ -186,6 +192,7 @@ const Product = () => {
                 type="radio"
                 name="rating-10"
                 className="rating-hidden"
+                defaultChecked={product.rating === 0}
               />
               {[...Array(10).keys()].map((_, index) => {
                 return (
@@ -216,4 +223,4 @@ const Product = () => {
   );
 };
 
-export default withSidebar(withNavbar(Product));
+export default withNavbar(withSidebar(Product));

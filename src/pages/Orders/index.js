@@ -1,26 +1,23 @@
 import { checkAuth, withNavbar, withSidebar, Order } from "../../components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getOrders } from "../../api/orders/get";
+import { getApiError } from "../../helpers/getApiError";
 
 const Orders = () => {
   const [category, setCategory] = useState("");
+  const [orders, setOrders] = useState([]);
+  useEffect(() => {
+    getOrders()
+      .then((response) => setOrders(response.data))
+      .catch((error) => getApiError(error));
+  }, [category]);
 
   const handleCategoryChange = (category) => {
     setCategory(category);
-    console.log(category);
   };
   return (
     <>
       <div className=" mt-14  h-auto mx-2">
-        {/* /
-  /bg-[#D2B82C] */}
-        <div className="bg-[#D2B82C] h-20 grid place-items-center h-screen">
-          <input
-            type="text"
-            placeholder="Search by products,brands and more"
-            className="input input-bordered w-full max-w-xs rounded-3xl w-[695px]"
-          />
-        </div>
-
         <div className=" h-screen">
           <div className="flex flex-row  gap-16 ml-20 pt-5">
             <p className="text-[#2838C1] font-semi-bold text-xl">Orders</p>
@@ -40,14 +37,13 @@ const Orders = () => {
             </select>
           </div>
 
-          <Order />
-          <Order />
-          <Order />
-          <Order />
+          {orders.map((_) => {
+            <Order />;
+          })}
         </div>
       </div>
     </>
   );
 };
 
-export default checkAuth(withSidebar(withNavbar(Orders)), "CUSTOMER");
+export default checkAuth(withNavbar(withSidebar(Orders)), "CUSTOMER");

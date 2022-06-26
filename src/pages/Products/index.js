@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { getProducts } from "../../api/products/get";
-import { Error, ProductCard, withNavbar, withSidebar } from "../../components";
+import {
+  Error,
+  ProductCard,
+  withNavbar,
+  withSidebar,
+  CustomLoader,
+} from "../../components";
 import { getApiError } from "../../helpers/getApiError";
 
 const Products = () => {
@@ -28,12 +34,11 @@ const Products = () => {
 
   return (
     <>
-      <div className="flex">
-        <div className="w-1/5 h-full hidden md:display lg:block"></div>
-        {error && <Error text={error} />}
-        {loading ? (
-          <div className="text-5xl text-black font-bold">Loading</div>
-        ) : products.length === 0 ? (
+      {error && <Error text={error} />}
+      {loading ? (
+        <CustomLoader />
+      ) : products.length === 0 ? (
+        <div className="flex">
           <div className="text-5xl text-black font-bold">
             No Products{" "}
             <button
@@ -43,15 +48,15 @@ const Products = () => {
               View All
             </button>
           </div>
-        ) : (
-          <div className="mb-4 mt-12 mx-8 grid gap-8 grid-cols-12 w-full">
-            {products.map((product) => (
-              <ProductCard key={product._id} product={product} />
-            ))}
-          </div>
-        )}
-      </div>
+        </div>
+      ) : (
+        <div className="mb-4 mt-12 mx-8 grid gap-8 grid-cols-12 w-full">
+          {products.map((product) => (
+            <ProductCard key={product._id} product={product} />
+          ))}
+        </div>
+      )}
     </>
   );
 };
-export default withSidebar(withNavbar(Products));
+export default withNavbar(withSidebar(Products));

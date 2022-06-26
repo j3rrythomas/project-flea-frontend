@@ -92,4 +92,4 @@ const Checkout = () => {
   );
 };
 
-export default checkAuth(withSidebar(withNavbar(Checkout)), "CUSTOMER");
+export default checkAuth(withNavbar(withSidebar(Checkout)), "CUSTOMER");
