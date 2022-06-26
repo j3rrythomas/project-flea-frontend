@@ -8,26 +8,44 @@ import {
 
 const Checkout = () => {
   return (
-    <div className="hidden lg:block container p-8 mx-auto mt-12">
+    <div className="lg:block container p-8 mx-auto mt-12">
       <div className="my-2">
         <h1 className="text-xl ml-1 text-black font-bold tracking-wider">
           My Cart
         </h1>
       </div>
-      <div className="w-full flex">
-        <div className="w-2/3">
-          <CheckoutItem />
-          <CheckoutItem />
-          <CheckoutItem />
-          <CheckoutItem />
-          <CheckoutItem />
-          <CheckoutItem />
-          <CheckoutItem />
-          <CheckoutItem />
-          <CheckoutItem />
+      <div className="flex flex-col-reverse lg:w-full lg:flex-row">
+        <div className="w-full lg:w-2/3">
+          <CheckoutItem
+            itemInfo={{ name: "Abc", categories: ["Handicrafts", "Pottery"] }}
+          />
+          <CheckoutItem
+            itemInfo={{ name: "Abc", categories: ["Handicrafts", "Pottery"] }}
+          />
+          <CheckoutItem
+            itemInfo={{ name: "Abc", categories: ["Handicrafts", "Pottery"] }}
+          />
+          <CheckoutItem
+            itemInfo={{ name: "Abc", categories: ["Handicrafts", "Pottery"] }}
+          />
+          <CheckoutItem
+            itemInfo={{ name: "Abc", categories: ["Handicrafts", "Pottery"] }}
+          />
+          <CheckoutItem
+            itemInfo={{ name: "Abc", categories: ["Handicrafts", "Pottery"] }}
+          />
+          <CheckoutItem
+            itemInfo={{ name: "Abc", categories: ["Handicrafts", "Pottery"] }}
+          />
+          <CheckoutItem
+            itemInfo={{ name: "Abc", categories: ["Handicrafts", "Pottery"] }}
+          />
+          <CheckoutItem
+            itemInfo={{ name: "Abc", categories: ["Handicrafts", "Pottery"] }}
+          />
         </div>
-        <div className="w-1/3">
-          <div className="mt-4 ml-10 bg-[#fff]">
+        <div className="w-full lg:w-1/3">
+          <div className="mt-4 lg:ml-10 bg-[#fff]">
             <div className="shadow px-4 pt-8 pb-4 rounded-lg">
               <h3 className="text-xl font-bold text-[#945959]">
                 PRICE DETAILS

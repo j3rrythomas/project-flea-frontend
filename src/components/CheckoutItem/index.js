@@ -1,16 +1,18 @@
-const CheckoutItem = () => {
+import PropTypes from "prop-types";
+
+const CheckoutItem = ({ itemInfo }) => {
   return (
     <div className="mt-5 bg-[#fff] border-solid flex h-48 rounded-md">
-      <div>
-        <div className="flex mt-5 ml-10">
+      <div className="w-1/5">
+        <div className="flex justify-center items-center h-4/5">
           <img
             src="https://i.pinimg.com/474x/22/29/97/2229978df9b298063fce556d227c0392.jpg"
-            className="object-cover h-28 w-28 rounded-md"
+            className="object-cover h-28 w-28 rounded-md ml-8 lg:ml-0"
             alt="image"
           />
         </div>
 
-        <div className="flex justify-center items-center ml-9 mt-4">
+        <div className="flex justify-center items-center h-1/5 ml-8 lg:ml-0">
           <button>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -51,17 +53,29 @@ const CheckoutItem = () => {
           </button>
         </div>
       </div>
-      <div className="p-4 px-6 text-center whitespace-nowrap text-xl">
-        <div className="flex flex-col items-center justify-center">
-          <h3 className="text-2xl text-[#000]">
-            Jimkia Ceramic Plant Container(Aswani White) Hand-Made Product
+      <div className="p-4 px-6 text-center whitespace-nowrap text-xl w-3/5">
+        <div className="flex flex-col items-center justify-evenly font-bold h-3/4 ">
+          <h3 className="text-2xl text-left w-full text-[#000]">
+            {itemInfo.name}
           </h3>
-          <h4 className="text-left w-full text-[#945959]">Ceramic</h4>
+          <div className="flex w-full">
+            {itemInfo.categories.map((category, index) => (
+              <h4
+                className="text-left text-[#945959] mr-2"
+                key={category + index}
+              >
+                {category}
+              </h4>
+            ))}
+          </div>
           <h4 className="text-left w-full text-[#945959]">Seller:Jimkia</h4>
+          <h4 className="lg:hidden text-left text-2xl w-full text-black ">
+            $249
+          </h4>
         </div>
       </div>
 
-      <div className="p-4 px-6 text-center ml-0 whitespace-nowrap">
+      <div className="p-4 px-6 text-right whitespace-nowrap w-1/5">
         <button>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -78,13 +92,17 @@ const CheckoutItem = () => {
             />
           </svg>
         </button>
-        <div>
-          <h4 className="text-left text-2xl mt-20 bottom-0 right-0 w-full text-black">
+        <div className="hidden lg:block">
+          <h4 className="text-center lg:text-right text-2xl mt-20 w-full text-black ">
             $249
           </h4>
         </div>
       </div>
     </div>
   );
+};
+
+CheckoutItem.propTypes = {
+  itemInfo: PropTypes.object,
 };
 export default CheckoutItem;
