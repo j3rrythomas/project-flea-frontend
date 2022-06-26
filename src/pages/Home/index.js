@@ -5,4 +5,4 @@ const Home = () => {
   return <HomeProducts />;
 };
 
-export default withSidebar(withNavbar(Home));
+export default withNavbar(withSidebar(Home));

@@ -6,6 +6,7 @@ import CreatableSelect from "react-select/creatable";
 import { getCategories } from "../../api/products/getCategories";
 import { addProduct } from "../../api/products/post";
 import { tagSuggestions } from "../../constants/tagSuggestions";
+import { getApiError } from "../../helpers/getApiError";
 import { Error, Success } from "../Alert";
 
 const AddProductForm = ({ closeForm }) => {
@@ -16,8 +17,8 @@ const AddProductForm = ({ closeForm }) => {
   const [categoryError, setCategoryError] = useState("");
   const [productPic, setProductPic] = useState();
   const [productPicError, setProductPicError] = useState("");
-
   const [addProductStatus, setAddProductStatus] = useState("");
+  const [apiError, setApiError] = useState("");
 
   useEffect(() => {
     getCategories().then((response) => {
@@ -36,7 +37,7 @@ const AddProductForm = ({ closeForm }) => {
         {addProductStatus === "success" ? (
           <Success text="Product added successfuly" />
         ) : addProductStatus === "error" ? (
-          <Error text="Error creating product" />
+          <Error text={apiError} />
         ) : (
           <></>
         )}
@@ -102,8 +103,9 @@ const AddProductForm = ({ closeForm }) => {
                     setAddProductStatus("");
                   }, 5000);
                 })
-                .catch(() => {
+                .catch((error) => {
                   setAddProductStatus("error");
+                  setApiError(getApiError(error));
                   setTimeout(() => {
                     setAddProductStatus("");
                   }, 5000);
