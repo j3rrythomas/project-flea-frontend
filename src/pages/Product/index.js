@@ -58,74 +58,11 @@ const Product = () => {
                 >
                   <LeftArrowIcon />
                 </button>
-                <div className="h-[600px] max-w-[400px] md:min-w-[400px] md:max-w-[800px] lg:w-[800px] carousel carousel-vertical rounded-box scrollbar-default">
+                <div className="h-[600px] max-w-[400px] md:min-w-[400px] md:max-w-[800px] lg:w-[800px] carousel carousel-vertical rounded-box">
                   <div className="carousel-item h-full justify-center relative">
+                    <img src={product.image} className="z-10" />
                     <img
-                      src="https://api.lorem.space/image/furniture?hash=8B7BCDC2"
-                      className="z-10"
-                    />
-                    <img
-                      src="https://api.lorem.space/image/furniture?hash=8B7BCDC2"
-                      className="h-full w-full absolute top-0 left-0 blur-md"
-                    />
-                  </div>
-                  <div className="carousel-item h-full justify-center relative">
-                    <img
-                      src="https://api.lorem.space/image/fashion?hash=500B67FB"
-                      className="z-10"
-                    />
-                    <img
-                      src="https://api.lorem.space/image/fashion?hash=500B67FB"
-                      className="h-full w-full absolute top-0 left-0 blur-md"
-                    />
-                  </div>
-                  <div className="carousel-item h-full justify-center relative">
-                    <img
-                      src="https://api.lorem.space/image/game?hash=A89D0DE6"
-                      className="z-10"
-                    />
-                    <img
-                      src="https://api.lorem.space/image/game?hash=A89D0DE6"
-                      className="h-full w-full absolute top-0 left-0 blur-md"
-                    />
-                  </div>
-                  <div className="carousel-item h-full justify-center relative">
-                    <img
-                      src="https://api.lorem.space/image/movie?hash=225E6693"
-                      className="z-10"
-                    />
-                    <img
-                      src="https://api.lorem.space/image/movie?hash=225E6693"
-                      className="h-full w-full absolute top-0 left-0 blur-md"
-                    />
-                  </div>
-                  <div className="carousel-item h-full justify-center relative">
-                    <img
-                      src="https://api.lorem.space/image/album?hash=9D9539E7"
-                      className="z-10"
-                    />
-                    <img
-                      src="https://api.lorem.space/image/album?hash=9D9539E7"
-                      className="h-full w-full absolute top-0 left-0 blur-md"
-                    />
-                  </div>
-                  <div className="carousel-item h-full justify-center relative">
-                    <img
-                      src="https://api.lorem.space/image/book?hash=BDC01094"
-                      className="z-10"
-                    />
-                    <img
-                      src="https://api.lorem.space/image/book?hash=BDC01094"
-                      className="h-full w-full absolute top-0 left-0 blur-md"
-                    />
-                  </div>
-                  <div className="carousel-item h-full justify-center relative">
-                    <img
-                      src="https://api.lorem.space/image/watch?hash=7F5AE56A"
-                      className="z-10"
-                    />
-                    <img
-                      src="https://api.lorem.space/image/watch?hash=7F5AE56A"
+                      src={product.image}
                       className="h-full w-full absolute top-0 left-0 blur-md"
                     />
                   </div>
@@ -179,7 +116,7 @@ const Product = () => {
                     Buy Now
                   </button>
                   <button className="btn btn-outline w-[300px] my-1 text-white bg-darkGreen hover:bg-primaryColor hover:text-black">
-                    Add to Wishlist
+                    Customize Product
                   </button>
                 </div>
               </div>

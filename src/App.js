@@ -11,6 +11,7 @@ import {
   Error,
   Orders,
   Checkout,
+  CustomOrderRequest,
 } from "./pages";
 
 const App = () => {
@@ -27,6 +28,7 @@ const App = () => {
           <Route exact path="/vendor-home" element={<VendorHome />} />
           <Route exact path="/orders" element={<Orders />} />
           <Route exact path="/checkout" element={<Checkout />} />
+          <Route exact path="/custom-order" element={<CustomOrderRequest />} />
           <Route path="/errorPage" element={<Error />} />
           <Route path="*" element={<Error />} />
         </Routes>

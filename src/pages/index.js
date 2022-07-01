@@ -7,6 +7,7 @@ import Error from "./Error";
 import VendorHome from "./VendorHome";
 import Orders from "./Orders";
 import Checkout from "./Checkout";
+import CustomOrderRequest from "./CustomOrderRequest";
 
 export {
   Home,
@@ -18,4 +19,5 @@ export {
   VendorHome,
   Orders,
   Checkout,
+  CustomOrderRequest,
 };

@@ -27,18 +27,26 @@ const Order = ({ data }) => {
 
       <div className="bg-[#FFFFFF] h-fit lg:h-4/5 lg:flex flex-row">
         <div className="h-full lg:w-3/12 items-center lg:pl-4">
-          <div className="bg-gray h-[180px] lg:w-[226px] my-4 mt-6 carousel carousel-vertical rounded-box scrollbar-default">
-            {data.items.map((item) => (
+          <div className="bg-gray h-[180px] lg:w-[226px] my-4 mt-6 carousel rounded-box">
+            {data.items.map((item, index) => (
               <div
-                className="carousel-item h-full justify-center relative"
+                id={"item-" + (index + 1) + "-" + data._id}
+                className="carousel-item z-10 h-full justify-center relative w-full"
                 key={item.product_id + "img"}
               >
-                <img src={item.image} className="z-10" />
-                <img
-                  src={item.image}
-                  className="h-full w-full absolute top-0 left-0 blur-md"
-                />
+                <img src={item.image} alt={item.name} />
               </div>
+            ))}
+          </div>
+          <div className="flex justify-center lg:w-[226px] py-2 gap-2">
+            {data.items.map((_, index) => (
+              <a
+                href={"#item-" + (index + 1) + "-" + data._id}
+                key={"item" + (index + 1)}
+                className="btn btn-xs"
+              >
+                {index + 1}
+              </a>
             ))}
           </div>
         </div>
@@ -46,8 +54,11 @@ const Order = ({ data }) => {
           <div className="text-center lg:text-left">
             {data.items.map((item, index) => {
               return (
-                <p key={item.product_id + index}>
-                  {item.description}
+                <p
+                  key={item.product_id + index}
+                  className="text-xl font-semibold"
+                >
+                  {item.name}
                   {index !== data.items.length - 1 && ","}
                 </p>
               );
@@ -63,33 +74,33 @@ const Order = ({ data }) => {
               <input
                 type="radio"
                 name="rating-2"
-                className="mask mask-star-2 bg-orange-400"
+                className="mask mask-star-2 bg-black"
               />
               <input
                 type="radio"
                 name="rating-2"
-                className="mask mask-star-2 bg-orange-400"
+                className="mask mask-star-2 bg-black"
                 checked
               />
               <input
                 type="radio"
                 name="rating-2"
-                className="mask mask-star-2 bg-orange-400"
+                className="mask mask-star-2 bg-black"
               />
               <input
                 type="radio"
                 name="rating-2"
-                className="mask mask-star-2 bg-orange-400"
+                className="mask mask-star-2 bg-black"
               />
               <input
                 type="radio"
                 name="rating-2"
-                className="mask mask-star-2 bg-orange-400"
+                className="mask mask-star-2 bg-black"
               />
             </div>
           </div>
         </div>
-        <div className="h-full lg:w-3/12 justify-cente ">
+        <div className="h-full lg:w-3/12 justify-center">
           <div className=" justify-center lg:mx-0 mt-10 lg:mt-0 pb-4 lg:pb-0 pl-4 lg:pl-12 lg:pt-6 space-x-6 lg:space-x-0   lg:space-y-6 flex flex-row lg:block ">
             <div>
               <button className="lg:h-[36px] lg:px-0 lg:w-11/12  bg-[#EF8D33]  hover:bg-[#EF8D33] font-semibold text-[#fff] py-1 px-4   rounded-xl">

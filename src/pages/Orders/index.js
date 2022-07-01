@@ -19,7 +19,6 @@ const Orders = () => {
     isLoading(true);
     getOrders()
       .then((response) => {
-        console.log(response.data);
         setOrders(response.data);
         isLoading(false);
       })
