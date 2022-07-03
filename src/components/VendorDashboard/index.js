@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../reducers/authSlice";
 import PropTypes from "prop-types";
+import { emptyCart } from "../../reducers/customerSlice";
 
 const VendorDashboard = (props) => {
   const dispatch = useDispatch();
@@ -38,6 +39,7 @@ const VendorDashboard = (props) => {
             className="bg-transparent text-[#fff] text-2xl w-full py-4 text-center px-8 hover:bg-white hover:text-black"
             onClick={() => {
               dispatch(logout());
+              dispatch(emptyCart());
               navigate("/login");
             }}
           >

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { MenuIcon, SearchIcon } from "../../assets/icons";
 import { logout } from "../../reducers/authSlice";
+import { emptyCart } from "../../reducers/customerSlice";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -49,6 +50,7 @@ const Sidebar = () => {
                 setIsOpen(false);
                 if (isAuthenticated) {
                   dispatch(logout());
+                  dispatch(emptyCart());
                 } else {
                   navigate("/login");
                 }
