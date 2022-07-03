@@ -34,21 +34,27 @@ const Order = ({ data }) => {
                 className="carousel-item z-10 h-full justify-center relative w-full"
                 key={item.product_id + "img"}
               >
-                <img src={item.image} alt={item.name} />
+                <img src={item.image} alt={item.name} className="z-10" />
+                <img
+                  src={item.image}
+                  className="h-full w-full absolute top-0 left-0 blur-md"
+                />
               </div>
             ))}
           </div>
-          <div className="flex justify-center lg:w-[226px] py-2 gap-2">
-            {data.items.map((_, index) => (
-              <a
-                href={"#item-" + (index + 1) + "-" + data._id}
-                key={"item" + (index + 1)}
-                className="btn btn-xs"
-              >
-                {index + 1}
-              </a>
-            ))}
-          </div>
+          {data.items.length > 1 && (
+            <div className="flex justify-center lg:w-[226px] py-2 gap-2">
+              {data.items.map((_, index) => (
+                <a
+                  href={"#item-" + (index + 1) + "-" + data._id}
+                  key={"item" + (index + 1)}
+                  className="btn btn-xs"
+                >
+                  {index + 1}
+                </a>
+              ))}
+            </div>
+          )}
         </div>
         <div className="h-full pt-5 lg:w-6/12 text-black lg:flex flex-col lg:justify-between">
           <div className="text-center lg:text-left">

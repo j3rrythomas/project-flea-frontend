@@ -12,7 +12,10 @@ const Navbar = () => {
       <div onClick={() => navigate("/")}>
         <LogoSmall className="logo rounded-md" />
       </div>
-      <div className="cart-div text-black">
+      <div
+        className="cart-div text-black cursor-pointer"
+        onClick={() => navigate("/checkout")}
+      >
         Cart
         <div className="order-count">{itemCount > 99 ? "99+" : itemCount}</div>
       </div>

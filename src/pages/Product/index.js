@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { getProductById } from "../../api/products/get";
 import { LeftArrowIcon } from "../../assets/icons";
@@ -16,9 +16,10 @@ import { addToCart } from "../../reducers/customerSlice";
 const Product = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const [error, setError] = useState();
   const dispatch = useDispatch();
-  const [cartChange, setCartChange] = useState(false);
+  const [cartChange, setCartChange] = useState("");
   const [alertVisible, setAlertVisible] = useState(false);
   const [loading, isLoading] = useState(true);
   const [product, setProduct] = useState();
@@ -40,7 +41,9 @@ const Product = () => {
   }, []);
   return (
     <>
-      <>{cartChange && <Success text="Added to Cart" />}</>
+      <>{cartChange === "true" && <Success text="Added to Cart" />}</>
+      <>{cartChange === "false" && <Error text="Login to use Cart" />}</>
+
       {loading ? (
         <CustomLoader />
       ) : error ? (
@@ -103,11 +106,19 @@ const Product = () => {
                   <button
                     className="btn btn-outline w-[300px] my-1 text-white bg-darkGreen hover:bg-primaryColor hover:text-black"
                     onClick={() => {
-                      dispatch(
-                        addToCart({ productId: product._id, quantity: 1 })
-                      );
-                      setCartChange(true);
-                      setTimeout(() => setCartChange(false), 1500);
+                      if (isAuthenticated) {
+                        dispatch(
+                          addToCart({
+                            productId: product._id,
+                            quantity: 1,
+                            price: product.price,
+                          })
+                        );
+                        setCartChange("true");
+                      } else {
+                        setCartChange("false");
+                      }
+                      setTimeout(() => setCartChange(""), 1500);
                     }}
                   >
                     Add to Cart

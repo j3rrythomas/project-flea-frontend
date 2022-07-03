@@ -27,12 +27,6 @@ const Sidebar = () => {
             >
               Orders
             </div>
-            <div
-              className="bg-transparent text-[#fff] text-2xl w-full py-4 text-center px-8 hover:bg-white hover:text-black"
-              onClick={() => navigate("/checkout")}
-            >
-              Checkout
-            </div>
             <div className="bg-transparent text-[#fff] text-2xl w-full py-4 text-center px-8 hover:bg-white hover:text-black">
               Settings
             </div>

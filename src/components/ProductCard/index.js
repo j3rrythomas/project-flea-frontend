@@ -1,13 +1,14 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addToCart } from "../../reducers/customerSlice";
-import { Success } from "../Alert";
+import { Error, Success } from "../Alert";
 
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
-  const [cartChange, setCartChange] = useState(false);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const [cartChange, setCartChange] = useState("");
   const dispatch = useDispatch();
   const imgSrc = product.image?.includes("cloudinary")
     ? product.image
@@ -15,7 +16,8 @@ const ProductCard = ({ product }) => {
 
   return (
     <>
-      {cartChange ? <Success text="Added to cart" /> : null}
+      {cartChange === "true" && <Success text="Added to cart" />}
+      {cartChange === "false" && <Error text="Login to use cart" />}
 
       <div
         className="card card-compact col-span-12 md:col-span-6 xl:col-span-4 bg-base-100 shadow-xl max-w-[300px] sm:max-w-[400px] justify-self-center hover:scale-110 transition-all duration-[400ms] ease-in-out w-full"
@@ -52,9 +54,19 @@ const ProductCard = ({ product }) => {
               className="btn bg-[#dfd9d1] hover:bg-primaryColor hover:text-darkGreen text-black"
               onClick={(e) => {
                 e.stopPropagation();
-                dispatch(addToCart({ productId: product._id, quantity: 1 }));
-                setCartChange(true);
-                setTimeout(() => setCartChange(false), 1500);
+                if (isAuthenticated) {
+                  dispatch(
+                    addToCart({
+                      productId: product._id,
+                      quantity: 1,
+                      price: product.price,
+                    })
+                  );
+                  setCartChange("true");
+                } else {
+                  setCartChange("false");
+                }
+                setTimeout(() => setCartChange(""), 1500);
               }}
             >
               Add to Cart

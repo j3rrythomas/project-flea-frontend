@@ -3,22 +3,27 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialCustomerState = {
   cart: {},
   itemCount: 0,
+  price: 0,
 };
 const authSlice = createSlice({
   name: "customer",
   initialState: initialCustomerState,
   reducers: {
     addToCart: (state, action) => {
-      if (state.cart[action.payload.productId]) {
-        state.cart[action.payload.productId] += 1;
+      const { productId, quantity, price } = action.payload;
+      if (state.cart[productId]) {
+        state.cart[productId] += quantity;
       } else {
-        state.cart[action.payload.productId] = 1;
+        state.cart[productId] = 1;
       }
-      state.itemCount += action.payload.quantity;
+      state.itemCount += quantity;
+      state.price += price * quantity;
     },
     removeFromCart: (state, action) => {
-      delete state.cart[action.payload.productId];
-      state.itemCount -= state[action.payload.productId].quantity;
+      const { productId, price } = action.payload;
+      state.itemCount -= state.cart[productId];
+      state.price -= price * state.cart[productId];
+      delete state.cart[productId];
     },
     decreaseQuantity: (state, action) => {
       state.cart[action.payload.productId] -= 1;
@@ -26,14 +31,17 @@ const authSlice = createSlice({
         delete state.cart[action.payload.productId];
       }
       state.itemCount -= 1;
+      state.price -= action.payload.price;
     },
     increaseQuantity: (state, action) => {
       state.cart[action.payload.productId] += 1;
-      state.itemCount -= 1;
+      state.itemCount += 1;
+      state.price += action.payload.price;
     },
     emptyCart: (state) => {
       state.cart = {};
       state.itemCount = 0;
+      state.price = 0;
     },
   },
 });

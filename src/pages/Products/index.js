@@ -50,7 +50,7 @@ const Products = () => {
           </div>
         </div>
       ) : (
-        <div className="mb-4 mt-12 mx-8 grid gap-8 grid-cols-12 w-full">
+        <div className="mb-4 mt-12 md:mx-8 grid gap-8 grid-cols-12 w-full">
           {products.map((product) => (
             <ProductCard key={product._id} product={product} />
           ))}
