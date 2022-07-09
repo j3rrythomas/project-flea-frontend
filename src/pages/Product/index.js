@@ -126,7 +126,17 @@ const Product = () => {
                   <button className="btn btn-outline w-[300px] my-1 text-white bg-darkGreen hover:bg-primaryColor hover:text-black">
                     Buy Now
                   </button>
-                  <button className="btn btn-outline w-[300px] my-1 text-white bg-darkGreen hover:bg-primaryColor hover:text-black">
+                  <button
+                    className="btn btn-outline w-[300px] my-1 text-white bg-darkGreen hover:bg-primaryColor hover:text-black"
+                    onClick={() =>
+                      navigate("/custom-order", {
+                        state: {
+                          productId: product._id,
+                          sellerId: product.vendor_id,
+                        },
+                      })
+                    }
+                  >
                     Customize Product
                   </button>
                 </div>
