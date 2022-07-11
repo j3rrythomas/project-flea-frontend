@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getProductById } from "../../api/products/get";
 import { createOrder } from "../../api/orders/post";
+import { getProductById } from "../../api/products/get";
 import {
   checkAuth,
   CheckoutItem,

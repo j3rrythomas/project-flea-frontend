@@ -26,4 +26,7 @@ const VendorHome = () => {
   );
 };
 
-export default checkAuth(withVendorDashboard(VendorHome, "Home"), "VENDOR");
+export default checkAuth(
+  withVendorDashboard(VendorHome, "Dashboard"),
+  "VENDOR"
+);

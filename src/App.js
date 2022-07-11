@@ -12,6 +12,7 @@ import {
   Orders,
   Checkout,
   CustomOrderRequest,
+  VendorRequests,
 } from "./pages";
 
 const App = () => {
@@ -29,6 +30,7 @@ const App = () => {
           <Route exact path="/orders" element={<Orders />} />
           <Route exact path="/checkout" element={<Checkout />} />
           <Route exact path="/custom-order" element={<CustomOrderRequest />} />
+          <Route exact path="/vendor-requests" element={<VendorRequests />} />
           <Route path="/errorPage" element={<Error />} />
           <Route path="*" element={<Error />} />
         </Routes>

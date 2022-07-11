@@ -6,3 +6,8 @@ export const getOrders = async (options) => {
   });
   return response;
 };
+
+export const getCustomOrders = async () => {
+  const response = await apiAxios.get("/custom/viewRequest");
+  return response;
+};

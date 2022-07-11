@@ -8,6 +8,7 @@ import VendorHome from "./VendorHome";
 import Orders from "./Orders";
 import Checkout from "./Checkout";
 import CustomOrderRequest from "./CustomOrderRequest";
+import VendorRequests from "./VendorRequests";
 
 export {
   Home,
@@ -20,4 +21,5 @@ export {
   Orders,
   Checkout,
   CustomOrderRequest,
+  VendorRequests,
 };
