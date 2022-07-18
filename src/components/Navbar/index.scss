@@ -16,11 +16,13 @@
   height: 1.75rem;
   width: 1.75rem;
 }
-svg {
-  background-color: $primary-color;
-  transform: scale(1.25);
-}
 
+.logo {
+  svg {
+    background-color: $primary-color;
+    transform: scale(1.25);
+  }
+}
 .cart-div {
   display: flex;
   font-size: 1.5rem;

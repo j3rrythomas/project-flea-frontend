@@ -7,6 +7,7 @@ import { emptyCart } from "../../reducers/customerSlice";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [searchVal, setSearchVal] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isAuthenticated, role } = useSelector((state) => state.auth);
@@ -81,10 +82,19 @@ const Sidebar = () => {
           <div className="w-72 md:w-96 relative">
             <input
               type="text"
-              placeholder="Search by products,brands and more"
-              className="input input-bordered rounded-3xl bg-white w-full"
+              placeholder="Search by products,tags and more"
+              className="input input-bordered rounded-3xl bg-white w-full text-black"
+              value={searchVal}
+              onChange={(e) => {
+                setSearchVal(e.target.value);
+              }}
             />
-            <SearchIcon className="w-5 h-5 absolute right-5 top-[13px]" />
+            <SearchIcon
+              className="w-5 h-5 absolute right-5 top-[13px] cursor-pointer"
+              onClick={() => {
+                navigate("/products", { state: { name: searchVal.trim() } });
+              }}
+            />
           </div>
         </div>
       </div>

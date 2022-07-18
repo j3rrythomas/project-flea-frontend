@@ -42,7 +42,7 @@ const Checkout = () => {
   };
   const placeOrder = () => {
     const items = products.map(
-      ({ _id, name, image, rating, description, price }) => {
+      ({ _id, name, image, rating, description, price, vendor_id }) => {
         return {
           product_id: _id,
           quantity: cart[_id],
@@ -51,6 +51,7 @@ const Checkout = () => {
           rating,
           description,
           price,
+          vendor_id,
         };
       }
     );

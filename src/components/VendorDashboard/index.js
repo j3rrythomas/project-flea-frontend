@@ -6,8 +6,8 @@ import { emptyCart } from "../../reducers/customerSlice";
 
 const dashboardRoutes = {
   Dashboard: "/vendor-home",
+  Products: "/vendor-products",
   Requests: "/vendor-requests",
-  Customers: "/vendor-home",
 };
 
 const VendorDashboard = (props) => {
