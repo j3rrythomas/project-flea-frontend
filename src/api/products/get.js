@@ -9,3 +9,8 @@ export const getProductById = async (id) => {
   const response = await apiAxios.get(`/purchase/${id}`);
   return response;
 };
+
+export const getProductByVendor = async () => {
+  const response = await apiAxios.get("/products");
+  return response;
+};

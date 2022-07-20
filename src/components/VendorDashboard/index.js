@@ -59,7 +59,7 @@ const VendorDashboard = (props) => {
         </div>
         <div></div>
       </div>
-      <div className="w-full md:w-[calc(100%-320px)] h-full">
+      <div className="w-full md:w-[calc(100%-320px)] min-h-screen overflow-scroll">
         {props.children}
       </div>
     </div>

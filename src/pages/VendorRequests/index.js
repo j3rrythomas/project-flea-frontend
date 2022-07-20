@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
-import { checkAuth, CustomLoader, withVendorDashboard } from "../../components";
+import {
+  checkAuth,
+  CustomLoader,
+  Error,
+  withVendorDashboard,
+} from "../../components";
 import { getCustomOrders } from "../../api/orders/get";
 import { Link } from "react-router-dom";
 import { getApiError } from "../../helpers/getApiError";
-import Error from "../Error";
 import { CheckSquareIcon, CrossSquareIcon } from "../../assets/icons";
 import { updateCustomOrderStatus } from "../../api/orders/post";
 
@@ -32,13 +36,14 @@ const VendorRequests = () => {
   return (
     <>
       {apiError && <Error text={apiError} />}
-      {loading ? (
-        <CustomLoader />
-      ) : (
-        <div className="flex flex-col relative justify-center items-center h-screen">
-          <h1 className="text-3xl font-bold text-black top-16 left-10 absolute">
-            Requests for Custom Orders
-          </h1>
+
+      <div className="flex flex-col relative justify-center items-center h-screen">
+        <h1 className="text-3xl font-bold text-black top-16 left-10 absolute">
+          Requests for Custom Orders
+        </h1>
+        {loading ? (
+          <CustomLoader />
+        ) : (
           <div className="overflow-x-auto w-5/6">
             <table className="table w-full" data-theme="light">
               <thead>
@@ -163,8 +168,8 @@ const VendorRequests = () => {
               </tbody>
             </table>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </>
   );
 };

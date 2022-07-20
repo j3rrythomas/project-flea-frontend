@@ -1,5 +1,6 @@
 import { CoinIcon, OrderIcon, ProductIcon } from "../../assets/icons";
 import { checkAuth, withVendorDashboard } from "../../components";
+import { getStatistics } from "../../api/statistics/get";
 import {
   LineChart,
   Line,
@@ -10,6 +11,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import { useEffect, useState } from "react";
 
 const data = [
   {
@@ -62,6 +64,13 @@ const data = [
   },
 ];
 const VendorHome = () => {
+  const [statistics, setStatistics] = useState({});
+  useEffect(() => {
+    getStatistics()
+      .then((response) => setStatistics(response.data))
+      .catch((err) => console.error(err));
+  }, []);
+
   return (
     <div className="flex flex-col mt-20">
       <div className="flex flex-col lg:flex-row justify-around items-center gap-4">
@@ -69,21 +78,21 @@ const VendorHome = () => {
           <CoinIcon className="scale-150 absolute top-8 left-10" />
           <div className="pb-8 flex justify-around text-3xl w-full">
             <span className=" font-bold">Sales</span>
-            <span>$5000</span>
+            <span>${statistics.saleAggregate}</span>
           </div>
         </div>
         <div className="w-[300px] h-[150px] bg-[#fff] rounded-[3rem] text-black flex flex-col justify-end items-center relative">
           <ProductIcon className="scale-150 absolute top-8 left-10" />
           <div className="pb-8 flex justify-around text-3xl w-full">
             <span className=" font-bold">Products</span>
-            <span>100</span>
+            <span>{statistics.productCount}</span>
           </div>
         </div>
         <div className="w-[300px] h-[150px] bg-[#fff] rounded-[3rem] text-black flex flex-col justify-end items-center relative">
           <OrderIcon className="scale-150 absolute top-8 left-10" />
           <div className="pb-8 flex justify-around text-3xl w-full">
             <span className=" font-bold">Orders</span>
-            <span>1500</span>
+            <span>{statistics.saleCount}</span>
           </div>
         </div>
       </div>

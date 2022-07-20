@@ -72,7 +72,7 @@ const AddProductForm = ({ closeForm }) => {
 
             return errors;
           }}
-          onSubmit={async (values) => {
+          onSubmit={async (values, { resetForm }) => {
             if (categories.length < 1) {
               setCategoryError("At least one category must be selected");
             } else if (!productPic) {
@@ -98,6 +98,7 @@ const AddProductForm = ({ closeForm }) => {
               addProduct(formData)
                 .then(() => {
                   setAddProductStatus("success");
+                  resetForm();
                   closeForm();
                   setTimeout(() => {
                     setAddProductStatus("");
