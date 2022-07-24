@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { createOrder } from "../../api/orders/post";
 import { getProductById } from "../../api/products/get";
 import { LeftArrowIcon } from "../../assets/icons";
 import {
@@ -43,7 +44,9 @@ const Product = () => {
   return (
     <>
       <>{cartChange === "true" && <Success text="Added to Cart" />}</>
-      <>{cartChange === "false" && <Error text="Login to use Cart" />}</>
+      {cartChange === "buy" && <Success text="Item bought successfully" />}
+      {cartChange === "false" && <Error text="Login to use cart" />}
+      {cartChange === "buyerror" && <Error text="Failed to buy item" />}
 
       {loading ? (
         <CustomLoader />
@@ -124,7 +127,43 @@ const Product = () => {
                   >
                     Add to Cart
                   </button>
-                  <button className="btn btn-outline w-[300px] my-1 text-white bg-darkGreen hover:bg-primaryColor hover:text-black">
+                  <button
+                    className="btn btn-outline w-[300px] my-1 text-white bg-darkGreen hover:bg-primaryColor hover:text-black"
+                    onClick={() => {
+                      if (isAuthenticated) {
+                        createOrder({
+                          items: [
+                            {
+                              product_id: product._id,
+                              quantity: 1,
+                              ...product,
+                            },
+                          ],
+                          paymentStatus: "PENDING",
+                          shipTo: "Kollam",
+                          price: product.price,
+                        })
+                          .then(() => {
+                            setCartChange("buy");
+                            setTimeout(() => {
+                              setCartChange("");
+                              navigate("/orders");
+                            }, 5000);
+                          })
+                          .catch(() => {
+                            setCartChange("buyerror");
+                            setTimeout(() => {
+                              setCartChange("");
+                            }, 5000);
+                          });
+                      } else {
+                        setCartChange("buyerror");
+                        setTimeout(() => {
+                          setCartChange("");
+                        }, 5000);
+                      }
+                    }}
+                  >
                     Buy Now
                   </button>
                   <button

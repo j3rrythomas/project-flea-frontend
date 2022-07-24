@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { createOrder } from "../../api/orders/post";
 import { addToCart } from "../../reducers/customerSlice";
 import { Error, Success } from "../Alert";
 
@@ -17,7 +18,9 @@ const ProductCard = ({ product }) => {
   return (
     <>
       {cartChange === "true" && <Success text="Added to cart" />}
+      {cartChange === "buy" && <Success text="Item bought successfully" />}
       {cartChange === "false" && <Error text="Login to use cart" />}
+      {cartChange === "buyerror" && <Error text="Failed to buy item" />}
 
       <div
         className="card card-compact col-span-12 md:col-span-6 xl:col-span-4 bg-base-100 shadow-xl max-w-[300px] sm:max-w-[400px] justify-self-center hover:scale-110 transition-all duration-[400ms] ease-in-out w-full"
@@ -75,6 +78,34 @@ const ProductCard = ({ product }) => {
               className="btn hover:bg-green bg-darkGreen text-primaryColor"
               onClick={(e) => {
                 e.stopPropagation();
+                if (isAuthenticated) {
+                  createOrder({
+                    items: [
+                      { product_id: product._id, quantity: 1, ...product },
+                    ],
+                    paymentStatus: "PENDING",
+                    shipTo: "Kollam",
+                    price: product.price,
+                  })
+                    .then(() => {
+                      setCartChange("buy");
+                      setTimeout(() => {
+                        setCartChange("");
+                        navigate("/orders");
+                      }, 5000);
+                    })
+                    .catch(() => {
+                      setCartChange("buyerror");
+                      setTimeout(() => {
+                        setCartChange("");
+                      }, 5000);
+                    });
+                } else {
+                  setCartChange("buyerror");
+                  setTimeout(() => {
+                    setCartChange("");
+                  }, 5000);
+                }
               }}
             >
               Buy Now

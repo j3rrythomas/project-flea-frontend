@@ -4,6 +4,7 @@ import {
   withSidebar,
   Order,
   CustomLoader,
+  Footer,
 } from "../../components";
 import { useState, useEffect } from "react";
 import { getOrders } from "../../api/orders/get";
@@ -35,7 +36,7 @@ const Orders = () => {
     <>
       {!loading ? (
         <div className=" mt-14  h-auto mx-2">
-          <div className=" h-screen">
+          <div className="min-h-screen">
             {orders.length > 0 ? (
               <>
                 <div className="flex flex-row  gap-16 ml-20 pt-5">
@@ -79,6 +80,7 @@ const Orders = () => {
       ) : (
         <CustomLoader />
       )}
+      <Footer />
     </>
   );
 };

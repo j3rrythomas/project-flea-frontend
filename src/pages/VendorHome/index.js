@@ -12,64 +12,81 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { useEffect, useState } from "react";
+import { daysofWeek } from "../../constants/daysOfWeek";
 
-const data = [
-  {
-    name: "Jan",
-    amt: 2400,
-  },
-  {
-    name: "Feb",
-    amt: 2210,
-  },
-  {
-    name: "March",
-    amt: 2290,
-  },
-  {
-    name: "April",
-    amt: 2000,
-  },
-  {
-    name: "May",
-    amt: 2181,
-  },
-  {
-    name: "June",
-    amt: 2500,
-  },
-  {
-    name: "July",
-    amt: 2100,
-  },
-  {
-    name: "Aug",
-    amt: 2100,
-  },
-  {
-    name: "Sept",
-    amt: 100,
-  },
-  {
-    name: "Oct",
-    amt: 700,
-  },
-  {
-    name: "Nov",
-    amt: 3100,
-  },
-  {
-    name: "Dec",
-    amt: 6100,
-  },
-];
+// const _data = [
+//   {
+//     name: "Jan",
+//     amt: 2400,
+//   },
+//   {
+//     name: "Feb",
+//     amt: 2210,
+//   },
+//   {
+//     name: "March",
+//     amt: 2290,
+//   },
+//   {
+//     name: "April",
+//     amt: 2000,
+//   },
+//   {
+//     name: "May",
+//     amt: 2181,
+//   },
+//   {
+//     name: "June",
+//     amt: 2500,
+//   },
+//   {
+//     name: "July",
+//     amt: 2100,
+//   },
+//   {
+//     name: "Aug",
+//     amt: 2100,
+//   },
+//   {
+//     name: "Sept",
+//     amt: 100,
+//   },
+//   {
+//     name: "Oct",
+//     amt: 700,
+//   },
+//   {
+//     name: "Nov",
+//     amt: 3100,
+//   },
+//   {
+//     name: "Dec",
+//     amt: 6100,
+//   },
+// ];
 const VendorHome = () => {
   const [statistics, setStatistics] = useState({});
   useEffect(() => {
     getStatistics()
-      .then((response) => setStatistics(response.data))
+      .then((response) => setStatistics(getDailyData(response.data)))
       .catch((err) => console.error(err));
   }, []);
+  const getDailyData = (data) => {
+    const salesByDay = Array(7).fill(0);
+    data.perDay[0].totalWeightDay.forEach(
+      (dailySale) =>
+        (salesByDay[dailySale.dayOfWeek - 1] = dailySale.totalWeightDay)
+    );
+    console.log(salesByDay);
+    const graphData = daysofWeek.map((day, index) => {
+      return {
+        name: day,
+        sales: salesByDay[index],
+      };
+    });
+
+    return { graphData, ...data };
+  };
 
   return (
     <div className="flex flex-col mt-20">
@@ -102,7 +119,7 @@ const VendorHome = () => {
             <span className="text-3xl text-black font-bold mb-4 ">
               Products Sold
             </span>
-            <select
+            {/* <select
               name="option"
               className="select w-2/3 max-w-xs bg-[#fff] border border-gray text-[#000]"
               placeholder="Select option"
@@ -110,20 +127,20 @@ const VendorHome = () => {
               <option value="month">Monthly</option>
               <option value="week">Weekly</option>
               <option value="dat">Daily</option>
-            </select>
+            </select> */}
           </div>
           <div className="w-full lg:w-2/3">
             <ResponsiveContainer width="100%" height={500}>
               <LineChart
-                data={data}
+                data={statistics.graphData}
                 margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
               >
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="name" />
-                <YAxis dataKey="amt" />
+                <YAxis dataKey="sales" />
                 <Tooltip />
                 <Legend />
-                <Line type="linear" dataKey="amt" stroke="#175D62" />
+                <Line type="linear" dataKey="sales" stroke="#175D62" />
               </LineChart>
             </ResponsiveContainer>
           </div>

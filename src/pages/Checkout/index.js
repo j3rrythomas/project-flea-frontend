@@ -69,7 +69,6 @@ const Checkout = () => {
         setNotifications("error");
         setTimeout(() => {
           setNotifications("");
-          navigate("/orders");
         }, 5000);
       });
   };
