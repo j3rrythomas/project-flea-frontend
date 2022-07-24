@@ -7,6 +7,7 @@ import {
   withNavbar,
   withSidebar,
   CustomLoader,
+  Footer,
 } from "../../components";
 import { getApiError } from "../../helpers/getApiError";
 
@@ -56,6 +57,7 @@ const Products = () => {
           ))}
         </div>
       )}
+      <Footer />
     </>
   );
 };

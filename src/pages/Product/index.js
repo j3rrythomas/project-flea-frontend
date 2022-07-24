@@ -6,6 +6,7 @@ import { LeftArrowIcon } from "../../assets/icons";
 import {
   CustomLoader,
   Error,
+  Footer,
   Success,
   withNavbar,
   withSidebar,
@@ -177,6 +178,7 @@ const Product = () => {
           </div>
         </div>
       )}
+      <Footer />
     </>
   );
 };

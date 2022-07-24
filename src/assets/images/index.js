@@ -5,6 +5,9 @@ import FleaMarketImg from "./fleamarket.jpg";
 import BookCardImg from "./books.jpg";
 import AntiqueCardImg from "./antiques.jpg";
 import UtensilsCardImg from "./utensils.jpg";
+import HandicraftsImg from "./handicrafts.jpg";
+import PaintingsImg from "./paintings.jpg";
+import ApparelImg from "./apparel.jpg";
 
 export {
   LogoSmall,
@@ -14,4 +17,7 @@ export {
   BookCardImg,
   AntiqueCardImg,
   UtensilsCardImg,
+  HandicraftsImg,
+  PaintingsImg,
+  ApparelImg,
 };
