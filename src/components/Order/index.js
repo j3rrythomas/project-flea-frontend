@@ -44,7 +44,7 @@ const Order = ({ data }) => {
           </div>
           {data.items.length > 1 && (
             <div className="flex justify-center lg:w-[226px] py-2 gap-2">
-              {data.items.map((_, index) => (
+              {data.items.slice(0, 4).map((_, index) => (
                 <a
                   href={"#item-" + (index + 1) + "-" + data._id}
                   key={"item" + (index + 1)}
@@ -57,22 +57,25 @@ const Order = ({ data }) => {
           )}
         </div>
         <div className="h-full pt-5 lg:w-6/12 text-black lg:flex flex-col lg:justify-between">
-          <div className="text-center lg:text-left">
-            {data.items.slice(0, 3).map((item, index) => {
+          <div className="text-center lg:text-left overflow-scroll">
+            {data.items.slice(0, 10).map((item, index) => {
               return (
                 <p
                   key={item.product_id + index}
-                  className="text-xl font-semibold"
+                  className="text-xl font-semibold mt-2"
                 >
-                  {item.name.substring(0, 50)}
-                  {item.name.length > 50 && "..."}
-                  {index !== data.items.length - 1 && ","}
+                  {/* {item.name.substring(0, 50)}
+                  {item.name.length > 50 && "..."}*/}
+                  {index + 1 + ". " + item.name}
+                  <br />
                 </p>
               );
             })}
-            {data.items.length > 4
-              ? "+ " + (data.items.length - 4) + " more items"
-              : ""}
+            <p className="text-xl font-bold">
+              {data.items.length > 10
+                ? "+ " + (data.items.length - 10) + " more items"
+                : ""}
+            </p>
           </div>
 
           <div className="text-center text-black lg:text-right lg:text-2xl font-bold pt-8 lg:pt-0 lg:mb-4">

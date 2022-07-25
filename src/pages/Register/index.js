@@ -11,6 +11,7 @@ const Register = () => {
   const navigate = useNavigate();
   const [error, setError] = useState();
   const [profilePic, setProfilePic] = useState();
+  const [profilePicError, setProfilePicError] = useState("");
   return (
     <>
       {error && <Error text={error} />}
@@ -71,19 +72,24 @@ const Register = () => {
               // eslint-disable-next-line no-unused-vars
               onSubmit={async ({ confirmPassword, ...values }) => {
                 var formData = new FormData();
-                formData.append("profilePic", profilePic);
-                formData.append("userData", JSON.stringify(values));
-                register(formData)
-                  .then(() => {
-                    navigate("/login");
-                  })
-                  .catch((error) => {
-                    console.error(error);
-                    setError(getApiError(error));
-                    setTimeout(() => {
-                      setError("");
-                    }, 5000);
-                  });
+                if (!profilePic) {
+                  setProfilePicError("No profile pic");
+                } else {
+                  setProfilePicError("");
+                  formData.append("profilePic", profilePic);
+                  formData.append("userData", JSON.stringify(values));
+                  register(formData)
+                    .then(() => {
+                      navigate("/login");
+                    })
+                    .catch((error) => {
+                      console.error(error);
+                      setError(getApiError(error));
+                      setTimeout(() => {
+                        setError("");
+                      }, 5000);
+                    });
+                }
               }}
             >
               {
@@ -234,7 +240,7 @@ const Register = () => {
 
                     <div className="col-span-12 justify-self-center mt-5  ml-20">
                       <label className="block font-semibold text-base text-[#000]">
-                        Photo
+                        Photo <span className="text-[#f00]">*</span>
                       </label>
                       <div className="mt-1 flex items-center">
                         <span className="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100">
@@ -257,6 +263,7 @@ const Register = () => {
                           />
                         </div>
                       </div>
+                      <span className="text-[#f00]">{profilePicError}</span>
                     </div>
                     <div className="col-span-12 justify-self-center mt-5">
                       <div className="flex justify-center items-center">

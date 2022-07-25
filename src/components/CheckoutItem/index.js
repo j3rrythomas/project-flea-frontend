@@ -88,7 +88,7 @@ const CheckoutItem = ({ itemInfo, removeItem }) => {
       </div>
       <div className="p-4 px-6 text-center whitespace-nowrap text-xl w-3/5">
         <div className="flex flex-col items-center justify-evenly font-bold h-3/4 ">
-          <h3 className="text-2xl text-left w-full text-[#000]">
+          <h3 className="text-2xl text-left w-full text-[#000] overflow-hidden text-ellipsis">
             {itemInfo.name}
           </h3>
           <div className="flex w-full">
