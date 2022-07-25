@@ -73,11 +73,11 @@ const VendorHome = () => {
   }, []);
   const getDailyData = (data) => {
     const salesByDay = Array(7).fill(0);
-    data.perDay[0].totalWeightDay.forEach(
+    data?.perDay[0]?.totalWeightDay.forEach(
       (dailySale) =>
         (salesByDay[dailySale.dayOfWeek - 1] = dailySale.totalWeightDay)
     );
-    console.log(salesByDay);
+    // console.log(salesByDay);
     const graphData = daysofWeek.map((day, index) => {
       return {
         name: day,
@@ -95,21 +95,21 @@ const VendorHome = () => {
           <CoinIcon className="scale-150 absolute top-8 left-10" />
           <div className="pb-8 flex justify-around text-3xl w-full">
             <span className=" font-bold">Sales</span>
-            <span>${statistics.saleAggregate}</span>
+            <span>${statistics.saleAggregate || 0}</span>
           </div>
         </div>
         <div className="w-[300px] h-[150px] bg-[#fff] rounded-[3rem] text-black flex flex-col justify-end items-center relative">
           <ProductIcon className="scale-150 absolute top-8 left-10" />
           <div className="pb-8 flex justify-around text-3xl w-full">
             <span className=" font-bold">Products</span>
-            <span>{statistics.productCount}</span>
+            <span>{statistics.productCount || 0}</span>
           </div>
         </div>
         <div className="w-[300px] h-[150px] bg-[#fff] rounded-[3rem] text-black flex flex-col justify-end items-center relative">
           <OrderIcon className="scale-150 absolute top-8 left-10" />
           <div className="pb-8 flex justify-around text-3xl w-full">
             <span className=" font-bold">Orders</span>
-            <span>{statistics.saleCount}</span>
+            <span>{statistics.saleCount || 0}</span>
           </div>
         </div>
       </div>

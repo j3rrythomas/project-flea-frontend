@@ -43,6 +43,14 @@ const VendorRequests = () => {
         </h1>
         {loading ? (
           <CustomLoader />
+        ) : requests.length === 0 ? (
+          <div className="flex w-full h-full flex-col justify-center items-center">
+            <>
+              <p className="text-3xl lg:text-4xl text-black font-bold">
+                No Requests Received
+              </p>
+            </>
+          </div>
         ) : (
           <div className="overflow-x-auto w-5/6">
             <table className="table w-full" data-theme="light">

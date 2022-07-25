@@ -10,7 +10,9 @@ const Sidebar = () => {
   const [searchVal, setSearchVal] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isAuthenticated, role } = useSelector((state) => state.auth);
+  const { isAuthenticated, role, profilePic, fullName } = useSelector(
+    (state) => state.auth
+  );
   return (
     <>
       <div
@@ -20,15 +22,27 @@ const Sidebar = () => {
       >
         <div className="flex flex-col justify-between items-center bg-transparent mt-28 mb-33 h-4/5">
           <div className="bg-transparent">
-            <div className="bg-transparent text-[#fff] text-2xl w-full py-4 text-center px-8 hover:bg-white hover:text-black">
-              Profile
-            </div>
-            <div
-              className="bg-transparent text-[#fff] text-2xl w-full py-4 text-center px-8 hover:bg-white hover:text-black"
-              onClick={() => navigate("/orders")}
-            >
-              Orders
-            </div>
+            {isAuthenticated && (
+              <>
+                <div className="avatar w-full justify-center flex-col items-center">
+                  <div className="w-24 rounded-full bg-white">
+                    <img src={profilePic} className="h-24 w-24" />
+                  </div>
+                  <p className="mt-4 mb-12 text-xl text-white">
+                    Hi, {fullName}
+                  </p>
+                </div>
+                <div className="bg-transparent text-[#fff] text-2xl w-full py-4 text-center px-8 hover:bg-white hover:text-black">
+                  Profile
+                </div>
+                <div
+                  className="bg-transparent text-[#fff] text-2xl w-full py-4 text-center px-8 hover:bg-white hover:text-black"
+                  onClick={() => navigate("/orders")}
+                >
+                  Orders
+                </div>
+              </>
+            )}
             <div className="bg-transparent text-[#fff] text-2xl w-full py-4 text-center px-8 hover:bg-white hover:text-black">
               Settings
             </div>

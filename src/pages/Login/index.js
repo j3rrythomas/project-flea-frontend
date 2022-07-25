@@ -54,16 +54,26 @@ const Login = () => {
               }}
               onSubmit={async (values) => {
                 loginReq(values)
-                  .then(({ data: { _id, accessToken, role } }) => {
-                    dispatch(
-                      login({ userId: _id, authToken: accessToken, role })
-                    );
-                    if (role === "CUSTOMER") {
-                      navigate("/");
-                    } else {
-                      navigate("/vendor-home");
+                  .then(
+                    ({
+                      data: { _id, accessToken, role, profilePic, fullname },
+                    }) => {
+                      dispatch(
+                        login({
+                          userId: _id,
+                          authToken: accessToken,
+                          role,
+                          profilePic,
+                          fullname,
+                        })
+                      );
+                      if (role === "CUSTOMER") {
+                        navigate("/");
+                      } else {
+                        navigate("/vendor-home");
+                      }
                     }
-                  })
+                  )
                   .catch((error) => {
                     setError(getApiError(error));
                     setTimeout(() => {

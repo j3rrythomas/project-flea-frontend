@@ -10,6 +10,8 @@ import { ReactComponent as OrderIcon } from "./order.svg";
 import { ReactComponent as ProductIcon } from "./product.svg";
 import { ReactComponent as CheckSquareIcon } from "./checkSquare.svg";
 import { ReactComponent as CrossSquareIcon } from "./crossSquare.svg";
+import { ReactComponent as DeleteIcon } from "./delete.svg";
+import { ReactComponent as EditIcon } from "./edit.svg";
 
 export {
   MenuIcon,
@@ -24,4 +26,6 @@ export {
   ProductIcon,
   CheckSquareIcon,
   CrossSquareIcon,
+  DeleteIcon,
+  EditIcon,
 };
