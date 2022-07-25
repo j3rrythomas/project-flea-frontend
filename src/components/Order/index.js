@@ -58,17 +58,21 @@ const Order = ({ data }) => {
         </div>
         <div className="h-full pt-5 lg:w-6/12 text-black lg:flex flex-col lg:justify-between">
           <div className="text-center lg:text-left">
-            {data.items.map((item, index) => {
+            {data.items.slice(0, 3).map((item, index) => {
               return (
                 <p
                   key={item.product_id + index}
                   className="text-xl font-semibold"
                 >
-                  {item.name}
+                  {item.name.substring(0, 50)}
+                  {item.name.length > 50 && "..."}
                   {index !== data.items.length - 1 && ","}
                 </p>
               );
             })}
+            {data.items.length > 4
+              ? "+ " + (data.items.length - 4) + " more items"
+              : ""}
           </div>
 
           <div className="text-center text-black lg:text-right lg:text-2xl font-bold pt-8 lg:pt-0 lg:mb-4">

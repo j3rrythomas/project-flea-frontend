@@ -76,7 +76,7 @@ const Product = () => {
                 </div>
               </div>
               <div className="flex flex-col justify-evenly items-center h-[600px] lg:max-w-[400px]">
-                <h1 className="text-3xl md:text-5xl font-bold text-black text-center">
+                <h1 className="text-3xl md:text-4xl font-bold text-black text-center">
                   {product.name}
                 </h1>
                 <div className="text-lg font-semibold text-black text-center">
@@ -92,14 +92,20 @@ const Product = () => {
                 </div>
 
                 <p className="text-lg font-semibold text-black text-center">
-                  {product.description ||
-                    "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis explicabo aspernatur dolorem beatae pariatur minima, nihil veritatis iure quibusdam vel?"}
+                  {product.description}
                 </p>
 
                 <p className="text-lg font-semibold text-black text-center">
                   Category:{" "}
                   <span className="text-xl">
-                    {product.category || "Lorem ipsum"}
+                    {product.category.map((tag, index) => (
+                      <div
+                        key={tag + index}
+                        className="badge badge-outline badge-lg mx-1"
+                      >
+                        {tag}
+                      </div>
+                    ))}
                   </span>
                 </p>
 

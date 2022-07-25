@@ -1,7 +1,7 @@
 import { LogoSmall } from "../../assets/images";
 const Footer = () => {
   return (
-    <div className="w-full flex-row bg-black">
+    <div className="w-full flex-row bg-black mt-20">
       <footer className="footer place-items-center py-10 px-4 bg-base-200 text-base-content">
         <div className="flex-col">
           <span className="footer-title"></span>
