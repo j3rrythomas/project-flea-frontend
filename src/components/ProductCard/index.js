@@ -37,7 +37,11 @@ const ProductCard = ({ product }) => {
           <h2 className="card-title text-black font-semibold">
             {product.name}
           </h2>
-          <p className="text-black">{product.description}</p>
+          <p className="text-black">
+            {product.description.length > 100
+              ? product.description.substring(0, 100) + "..."
+              : product.description}
+          </p>
 
           <div className="card-actions justify-end">
             {product.tags.map((tag) => (

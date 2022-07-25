@@ -76,7 +76,7 @@ const Product = () => {
                 </div>
               </div>
               <div className="flex flex-col justify-evenly items-center h-[600px] lg:max-w-[400px]">
-                <h1 className="text-3xl md:text-4xl font-bold text-black text-center">
+                <h1 className="text-2xl lg:text-3xl font-bold text-black text-center">
                   {product.name}
                 </h1>
                 <div className="text-lg font-semibold text-black text-center">
@@ -90,10 +90,6 @@ const Product = () => {
                     </div>
                   ))}
                 </div>
-
-                <p className="text-lg font-semibold text-black text-center">
-                  {product.description}
-                </p>
 
                 <p className="text-lg font-semibold text-black text-center">
                   Category:{" "}
@@ -189,36 +185,45 @@ const Product = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col justify-between items-center md:items-start pt-12 w-10/12">
-            <div className="rating rating-lg rating-half">
-              <input
-                disabled
-                type="radio"
-                name="rating-10"
-                className="rating-hidden"
-                defaultChecked={product.rating === 0}
-              />
-              {[...Array(10).keys()].map((_, index) => {
-                return (
-                  <input
-                    disabled
-                    key={index}
-                    type="radio"
-                    name="rating-10"
-                    className={`bg-black mask mask-star-2 hover:cursor-default ${
-                      index % 2 === 0 ? "mask-half-1 " : "mask-half-2"
-                    }`}
-                    defaultChecked={
-                      Math.round(product.rating * 2) === index + 1
-                    }
-                  />
-                );
-              })}
-            </div>
-            <div>
-              <p className="text-2xl font-semibold text-black text-center md:ml-4 mt-4">
-                Rating:{product.rating}
+          <div className="flex flex-col lg:flex-row-reverse w-full justify-around items-center">
+            <div className="lg:w-1/5">
+              {" "}
+              <p className="text-xl font-bold text-black">Description:</p>
+              <p className="text-lg font-semibold text-black text-center">
+                {product.description}
               </p>
+            </div>
+            <div className="flex flex-col justify-between items-center md:items-start pt-12">
+              <div className="rating rating-lg rating-half">
+                <input
+                  disabled
+                  type="radio"
+                  name="rating-10"
+                  className="rating-hidden"
+                  defaultChecked={product.rating === 0}
+                />
+                {[...Array(10).keys()].map((_, index) => {
+                  return (
+                    <input
+                      disabled
+                      key={index}
+                      type="radio"
+                      name="rating-10"
+                      className={`bg-black mask mask-star-2 hover:cursor-default ${
+                        index % 2 === 0 ? "mask-half-1 " : "mask-half-2"
+                      }`}
+                      defaultChecked={
+                        Math.round(product.rating * 2) === index + 1
+                      }
+                    />
+                  );
+                })}
+              </div>
+              <div>
+                <p className="text-2xl font-semibold text-black text-center md:ml-4 mt-4">
+                  Rating:{product.rating}
+                </p>
+              </div>
             </div>
           </div>
         </div>
