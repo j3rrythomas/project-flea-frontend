@@ -23,8 +23,7 @@ const HomeProducts = () => {
           <div className="card-body">
             <h2 className="card-title text-3xl text-[#fff]">Browse All</h2>
             <p className="text-xl text-[#fff]">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus,
-              repellendus?
+              The complete hub where all exotic goods come under one shelter.
             </p>
             <div className="card-actions justify-center h-full items-center">
               <button
@@ -49,8 +48,8 @@ const HomeProducts = () => {
             <div className="flex flex-col items-center">
               <h1 className="card-title text-5xl  text-[#fff] mb-4">Books</h1>
               <p className="text-2xl text-[#fff]">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus,
-                repellendus?
+                Come experience the rustic touch and feel of books,both classics
+                and modern.
               </p>
             </div>
           </div>
@@ -70,8 +69,7 @@ const HomeProducts = () => {
                 Antiques
               </h1>
               <p className="text-2xl text-[#fff]">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus,
-                repellendus?
+                Experience the stories of old in the modern era.
               </p>
             </div>
           </div>
@@ -91,8 +89,7 @@ const HomeProducts = () => {
                 Crockery
               </h1>
               <p className="text-2xl text-[#fff]">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus,
-                repellendus?
+                The crockery your food deserves.
               </p>
             </div>
           </div>
@@ -182,8 +179,8 @@ const HomeProducts = () => {
                 Ornaments
               </h1>
               <p className="text-2xl text-[#fff]">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus,
-                repellendus?
+                Discover the world of decorative ideas with the most elegant
+                patterns and designs.
               </p>
             </div>
           </div>
@@ -203,8 +200,7 @@ const HomeProducts = () => {
                 Apparel
               </h1>
               <p className="text-2xl text-[#fff]">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus,
-                repellendus?
+                Fashion is the armor to survive the reality of everyday life.
               </p>
             </div>
           </div>
@@ -224,8 +220,7 @@ const HomeProducts = () => {
                 Paintings
               </h1>
               <p className="text-2xl text-[#fff]">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus,
-                repellendus?
+                Every canvas is a journey all its own, come own one.
               </p>
             </div>
           </div>
