@@ -12,6 +12,7 @@ import AddProductForm from "./AddProductForm";
 import CheckoutItem from "./CheckoutItem";
 import CustomLoader from "./CustomLoader";
 import Footer from "./Footer";
+import SalesCard from "./SalesCard";
 
 export {
   CustomCursor,
@@ -30,4 +31,5 @@ export {
   CheckoutItem,
   CustomLoader,
   Footer,
+  SalesCard,
 };

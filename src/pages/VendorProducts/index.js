@@ -88,7 +88,7 @@ const VendorHome = () => {
               <table className="table w-full" data-theme="light">
                 <thead>
                   <tr>
-                    <th className="bg-cyan text-white">Name</th>
+                    <th className="bg-cyan text-white w-5/12">Name</th>
                     <th className="bg-cyan text-white">Stock</th>
                     <th className="bg-cyan text-white">Price</th>
                     <th className="bg-cyan text-white">Rating</th>
@@ -118,7 +118,11 @@ const VendorHome = () => {
                             </div>
                           )}
                           <div>
-                            <div className="font-bold">{product.name}</div>
+                            <div className="font-bold">
+                              {product.name.length > 70
+                                ? product.name.substring(0, 70) + "..."
+                                : product.name}
+                            </div>
                           </div>
                         </div>
                       </td>

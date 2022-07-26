@@ -152,6 +152,17 @@ const HomeProducts = () => {
                 >
                   Pottery
                 </p>
+                <p
+                  className="text-3xl text-[#c2881f] mt-5"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    navigate("/products", {
+                      state: { category: "Digital" },
+                    });
+                  }}
+                >
+                  Digital
+                </p>
               </div>
             </div>
           </div>
