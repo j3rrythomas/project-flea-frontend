@@ -15,7 +15,7 @@ const SalesCard = ({ data }) => {
         <p className="text-md text-black">Quantity:{data.quantity}</p>
       </div>
       <div className="flex-col">
-        <p className="text-xl font-bold text-black">{data.price}$</p>
+        <p className="text-xl font-bold text-black">Rs.{data.price}</p>
       </div>
     </div>
   );

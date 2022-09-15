@@ -23,7 +23,7 @@ const ProductCard = ({ product }) => {
       {cartChange === "buyerror" && <Error text="Failed to buy item" />}
 
       <div
-        className="card card-compact col-span-12 md:col-span-6 xl:col-span-4 bg-base-100 shadow-xl max-w-[300px] sm:max-w-[400px] justify-self-center hover:scale-110 transition-all duration-[400ms] ease-in-out w-full"
+        className="card card-compact cursor-pointer col-span-12 md:col-span-6 xl:col-span-4 bg-base-100 shadow-xl max-w-[300px] sm:max-w-[400px] justify-self-center hover:scale-110 transition-all duration-[400ms] ease-in-out w-full"
         onClick={() => navigate(`/products/${product._id}`)}
       >
         <figure className="relative h-full">
@@ -55,7 +55,7 @@ const ProductCard = ({ product }) => {
           </div>
           <div className="card-actions justify-end items-center mt-4">
             <p className="text-lg font-bold text-black">
-              {"₹ " + product.price.toFixed(2)}
+              Rs.{product.price.toFixed(2)}
             </p>
             <button
               className="btn bg-[#dfd9d1] hover:bg-primaryColor hover:text-darkGreen text-black"

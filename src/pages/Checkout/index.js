@@ -124,13 +124,13 @@ const Checkout = () => {
                       {itemCount > 1 && "s"})
                     </span>
                     <span className="font-bold text-black">
-                      ${price.toFixed(2)}
+                      Rs.{price.toFixed(2)}
                     </span>
                   </div>
                   <div className="flex justify-between px-4">
                     <span className="font-bold text-black">Discount</span>
                     <span className="font-bold text-[#58C317]">
-                      - ${(0.05 * price).toFixed(2)}
+                      - Rs{(0.05 * price).toFixed(2)}
                     </span>
                   </div>
                   <div className="flex justify-between px-4">
@@ -144,11 +144,11 @@ const Checkout = () => {
                       Total amount
                     </span>
                     <span className="text-2xl text-black font-bold">
-                      ${(0.95 * price).toFixed(2)}
+                      Rs.{(0.95 * price).toFixed(2)}
                     </span>
                   </div>
                   <span className="text-xl ml-5 width-1/2 font-bold justify-end text-[#045E1D]">
-                    You will save ${(0.05 * price).toFixed(2)} on this order
+                    You will save Rs.{(0.05 * price).toFixed(2)} on this order
                   </span>
                   <div className="mt-4 h-15 w-full flex justify-center ">
                     <button

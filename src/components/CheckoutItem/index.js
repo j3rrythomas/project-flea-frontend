@@ -140,7 +140,7 @@ const CheckoutItem = ({ itemInfo, removeItem }) => {
         </div>
         <div className="hidden lg:block">
           <h4 className="text-center lg:text-right text-2xl mt-20 w-full text-black ">
-            {(itemInfo.price * quantity).toFixed(2)}$
+            Rs.{(itemInfo.price * quantity).toFixed(2)}
           </h4>
         </div>
       </div>

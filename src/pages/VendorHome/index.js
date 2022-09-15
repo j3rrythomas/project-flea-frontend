@@ -61,7 +61,7 @@ const VendorHome = () => {
               <CoinIcon className="scale-150 absolute top-8 left-10" />
               <div className="pb-8 flex justify-around text-3xl w-full">
                 <span className=" font-bold">Sales</span>
-                <span>${statistics.saleAggregate || 0}</span>
+                <span>Rs.{statistics.saleAggregate || 0}</span>
               </div>
             </div>
             <div className="w-[300px] h-[150px] bg-[#fff] rounded-[3rem] text-black flex flex-col justify-end items-center relative">

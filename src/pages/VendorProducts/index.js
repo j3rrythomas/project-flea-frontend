@@ -127,7 +127,7 @@ const VendorHome = () => {
                         </div>
                       </td>
                       <td>{product.stock}</td>
-                      <td>{product.price}</td>
+                      <td>Rs.{product.price}</td>
                       <td>{product.rating}</td>
                       <th className="flex justify-around items-center">
                         <EditIcon />

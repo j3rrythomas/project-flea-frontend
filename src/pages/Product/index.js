@@ -106,7 +106,7 @@ const Product = () => {
                 </p>
 
                 <h2 className="text-3xl font-bold text-black">
-                  Price: ₹{product.price.toFixed(2)}
+                  Price: Rs.{product.price.toFixed(2)}
                 </h2>
                 <div className="flex flex-col">
                   <button
