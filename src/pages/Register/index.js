@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { register } from "../../api/auth/Register";
 import { LogoSmall } from "../../assets/images";
-import { Error, checkNotAuth } from "../../components";
+import { Error, checkNotAuth, CustomLoader } from "../../components";
 import { getApiError } from "../../helpers/getApiError";
 import "../Login/index.scss";
 
@@ -12,7 +12,10 @@ const Register = () => {
   const [error, setError] = useState();
   const [profilePic, setProfilePic] = useState();
   const [profilePicError, setProfilePicError] = useState("");
-  return (
+  const [loading, isLoading] = useState(false);
+  return loading ? (
+    <CustomLoader />
+  ) : (
     <>
       {error && <Error text={error} />}
       <div className="login-container min-h-full">
@@ -71,6 +74,7 @@ const Register = () => {
               }}
               // eslint-disable-next-line no-unused-vars
               onSubmit={async ({ confirmPassword, ...values }) => {
+                isLoading(true);
                 var formData = new FormData();
                 if (!profilePic) {
                   setProfilePicError("No profile pic");
@@ -80,9 +84,11 @@ const Register = () => {
                   formData.append("userData", JSON.stringify(values));
                   register(formData)
                     .then(() => {
+                      isLoading(false);
                       navigate("/login");
                     })
                     .catch((error) => {
+                      isLoading(false);
                       console.error(error);
                       setError(getApiError(error));
                       setTimeout(() => {

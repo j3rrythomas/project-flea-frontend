@@ -6,14 +6,17 @@ import "./index.scss";
 import { loginReq } from "../../api/auth/Login";
 import { login } from "../../reducers/authSlice";
 import { useState } from "react";
-import { Error, checkNotAuth } from "../../components";
+import { Error, checkNotAuth, CustomLoader } from "../../components";
 import { getApiError } from "../../helpers/getApiError";
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [error, setError] = useState("");
-  return (
+  const [loading, isLoading] = useState(false);
+  return loading ? (
+    <CustomLoader />
+  ) : (
     <>
       {error && <Error text={error} />}
       <div className="login-container min-h-full">
@@ -53,11 +56,13 @@ const Login = () => {
                 return errors;
               }}
               onSubmit={async (values) => {
+                isLoading(true);
                 loginReq(values)
                   .then(
                     ({
                       data: { _id, accessToken, role, profilePic, fullname },
                     }) => {
+                      isLoading(false);
                       dispatch(
                         login({
                           userId: _id,
@@ -75,6 +80,7 @@ const Login = () => {
                     }
                   )
                   .catch((error) => {
+                    isLoading(false);
                     setError(getApiError(error));
                     setTimeout(() => {
                       setError("");
