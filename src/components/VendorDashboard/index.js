@@ -22,7 +22,7 @@ const VendorDashboard = (props) => {
               return (
                 <div
                   key={route}
-                  className={`text-2xl w-full py-4 text-left pl-16 ${
+                  className={`text-2xl w-full py-4 text-left pl-16 cursor-pointer ${
                     props.page === route
                       ? "hover:bg-gray  bg-white text-black"
                       : "bg-transparent text-[#fff]  hover:bg-white hover:text-black"
@@ -39,7 +39,7 @@ const VendorDashboard = (props) => {
         </div>
         <div className="bg-transparent h-1/6">
           <div
-            className="bg-transparent text-[#fff] text-2xl w-full py-4 text-center px-8 hover:bg-white hover:text-black"
+            className="bg-transparent text-[#fff] text-2xl w-full py-4 text-center px-8 hover:bg-white hover:text-black cursor-pointer"
             onClick={() => {
               navigate("/");
             }}
@@ -47,7 +47,7 @@ const VendorDashboard = (props) => {
             Go to Homepage
           </div>
           <div
-            className="bg-transparent text-[#fff] text-2xl w-full py-4 text-center px-8 hover:bg-white hover:text-black"
+            className="bg-transparent text-[#fff] text-2xl w-full py-4 text-center px-8 hover:bg-white hover:text-black cursor-pointer"
             onClick={() => {
               dispatch(logout());
               dispatch(emptyCart());

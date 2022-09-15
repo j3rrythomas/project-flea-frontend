@@ -32,18 +32,18 @@ const Sidebar = () => {
                     Hi, {fullName}
                   </p>
                 </div>
-                <div className="bg-transparent text-[#fff] text-2xl w-full py-4 text-center px-8 hover:bg-white hover:text-black">
+                <div className="bg-transparent text-[#fff] text-2xl w-full py-4 text-center px-8 hover:bg-white hover:text-black cursor-pointer">
                   Profile
                 </div>
                 <div
-                  className="bg-transparent text-[#fff] text-2xl w-full py-4 text-center px-8 hover:bg-white hover:text-black"
+                  className="bg-transparent text-[#fff] text-2xl w-full py-4 text-center px-8 hover:bg-white hover:text-black cursor-pointer"
                   onClick={() => navigate("/orders")}
                 >
                   Orders
                 </div>
               </>
             )}
-            <div className="bg-transparent text-[#fff] text-2xl w-full py-4 text-center px-8 hover:bg-white hover:text-black">
+            <div className="bg-transparent text-[#fff] text-2xl w-full py-4 text-center px-8 hover:bg-white hover:text-black cursor-pointer">
               Settings
             </div>
           </div>
@@ -51,7 +51,7 @@ const Sidebar = () => {
           <div className="bg-transparent ml-8">
             {isAuthenticated && role === "VENDOR" && (
               <button
-                className="btn-md  min-w-[300px] text-2xl text-[#fff] bg-transparent hover:scale-125 transition-all"
+                className="btn-md  min-w-[300px] text-2xl text-[#fff] bg-transparent hover:scale-125 transition-all cursor-pointer"
                 onClick={() => {
                   navigate("/vendor-home");
                 }}
@@ -60,7 +60,7 @@ const Sidebar = () => {
               </button>
             )}
             <button
-              className="btn-md  min-w-[300px] text-2xl text-[#fff] bg-transparent hover:scale-125 transition-all"
+              className="btn-md  min-w-[300px] text-2xl text-[#fff] bg-transparent hover:scale-125 transition-all cursor-pointer"
               onClick={() => {
                 setIsOpen(false);
                 if (isAuthenticated) {
