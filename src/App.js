@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.scss";
-import { CustomCursor } from "./components";
+// import { CustomCursor } from "./components";
 import {
   Home,
   Login,
@@ -20,7 +20,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className="App scrollbar-hide">
-        <CustomCursor />
+        {/* <CustomCursor /> */}
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/login" element={<Login />} />
