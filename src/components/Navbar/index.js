@@ -9,7 +9,7 @@ const Navbar = () => {
   return (
     <div className="nav-container">
       {/* <Logo className="logo" /> */}
-      <div onClick={() => navigate("/")}>
+      <div onClick={() => navigate("/")} className="cursor-pointer">
         <LogoSmall className="logo rounded-md" />
       </div>
       <div
